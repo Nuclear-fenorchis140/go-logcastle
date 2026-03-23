@@ -28,21 +28,6 @@ All notable changes to go-logcastle will be documented in this file.
   - `TestPrettyPrint` and `TestSingleLineJSON` - Output formatting
   - `TestColorOutput` and `TestNoColorOutput` - ANSI color codes
   - `TestFieldOrder` - Custom field ordering
-  - `TestStdlibTimestampStripping` - Duplicate timestamp removal
-- **Performance documentation** - Comprehensive guide showing throughput/latency for different configs:
-  - Maximum Throughput Mode: ~800K logs/sec
-  - Balanced Mode: ~500K logs/sec (default)
-  - Low-Latency Mode: ~300K logs/sec
-  - Development Mode: ~200K logs/sec
-  - Includes performance impact table by feature
-  - Hardware scaling benchmarks
-  - Optimization tips and measurement guide
-
-### Fixed
-- **Stdlib log timestamp duplication** - Parser now strips stdlib's `YYYY/MM/DD HH:MM:SS` prefix from messages
-  - Before: `{"message": "2026/03/23 22:29:38 Server started"}`
-  - After: `{"message": "Server started", "timestamp": "2026-03-23T22:29:38Z"}`
-  - Eliminates duplicate timestamps in log output
 
 ### Improved
 - **Package documentation** with comprehensive usage examples for each format type
@@ -50,8 +35,6 @@ All notable changes to go-logcastle will be documented in this file.
 - **Formatter documentation** explaining all format types, advanced features, and use cases
 - **DefaultConfig documentation** listing all defaults with explanations
 - Format type constants now include detailed descriptions and example outputs
-- **Performance characteristics** documented for all configuration combinations
-- **Known limitations** updated with throughput limits and when not to use go-logcastle
 
 ### Features
 - **Production observability optimizations** for modern log aggregation platforms:
@@ -60,14 +43,11 @@ All notable changes to go-logcastle will be documented in this file.
   - Terminal/Console: ANSI colors and pretty printing for better developer experience
 - **Format flexibility**: Choose between flat vs nested structure based on your observability stack
 - **Development/Production modes**: Easy switching between readable (pretty, colored) and optimized (single-line, flat) outputs
-- **Performance visibility**: Clear documentation of throughput/latency trade-offs for informed config choices
 
 ### Technical Highlights
-- All 22 tests passing including new timestamp stripping and formatting tests
+- All 21 tests passing including 7 new formatting tests
 - Zero breaking changes - all new features are opt-in with sensible defaults
 - FlattenFields defaults to `true` for optimal Grafana/Loki experience out of the box
-- Documented realistic performance expectations (~500K logs/sec baseline, ~1M logs/sec optimized)
-- Provided clear guidance on when NOT to use go-logcastle (>5M logs/sec, <100ns latency)
 
 ## [1.0.2] - 2026-03-23
 
