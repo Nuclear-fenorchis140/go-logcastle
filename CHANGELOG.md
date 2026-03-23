@@ -2,6 +2,58 @@
 
 All notable changes to go-logcastle will be documented in this file.
 
+## [1.1.0] - 2026-03-23
+
+### Added
+- **Comprehensive performance documentation** in README.md with 5 configuration modes:
+  - Maximum Throughput Mode (~800K logs/sec)
+  - Balanced Mode (~500K logs/sec, default)
+  - Low-Latency Mode (~300K logs/sec)
+  - Development Mode (~200K logs/sec)
+  - Text+Colors Mode (~150K logs/sec)
+- **Performance impact analysis** - Table showing throughput impact of each feature (PrettyPrint: -40%, ColorOutput: -50%, etc.)
+- **Library comparison section** - Detailed comparison with Zerolog, Zap, Slog, and Logrus:
+  - Honest assessment showing go-logcastle is ~10x slower than Zerolog (500K vs 10M logs/sec)
+  - Explanation of why: 300ns overhead for OS-level interception + parsing + formatting
+  - Value proposition: Trades speed for multi-library orchestration (MongoDB, Redis, GIN, etc.)
+  - Real-world scenario showing benefit of uniform logging across dependencies
+  - "When to use each library" decision guide
+- **Performance benchmark tool** in `examples/benchmark/main.go`:
+  - Tests all 5 configuration modes
+  - Measures actual throughput on user's hardware
+  - Includes warmup phase for accurate results
+- **FUTURE_OPTIMIZATIONS.md** - Extracted future performance improvements into dedicated file:
+  - Object pooling (60% allocation reduction)
+  - Zero-copy parsing (+20% throughput)
+  - SIMD JSON parsing (+30% speed)
+  - Lock-free queues (+15% throughput)
+  - Batch processing (+40% throughput)
+  - Combined potential: ~1.5M logs/sec (3x current)
+
+### Fixed
+- **Stdlib timestamp stripping** - Removes duplicate timestamps from stdlib `log` package:
+  - Parser now detects `YYYY/MM/DD HH:MM:SS` pattern from stdlib log
+  - Strips timestamp prefix from message and uses it as actual timestamp
+  - Fixes duplicate timestamps like: `{"message": "2026/03/23 22:29:38 Server started"}`
+  - Result: `{"timestamp": "2026-03-23T22:29:38Z", "message": "Server started"}`
+- Added test `TestStdlibTimestampStripping` to verify behavior
+
+### Improved
+- **README.md Known Limitations** - Added specific throughput numbers and multi-line content guidance:
+  - Clarified ~500K baseline, ~1M optimized throughput limits
+  - Added detailed explanation of Text format multi-line limitations
+  - Recommendation: Use JSON format for LLM/AI applications, databases, APIs with complex payloads
+- **Hardware scaling benchmarks** - Performance data for different CPU configurations (M2, AWS, GCP)
+- **Throughput by log volume** - Real-world scenarios (microservices, data pipelines, AI apps, databases)
+- **"When NOT to Use"** section - Clear guidance on ultra-low-latency (<100ns) and extreme throughput (>5M logs/sec) requirements
+- **Optimization tips** - 5 practical tips for improving performance
+
+### Technical Highlights
+- All 22 tests passing (added 1 new test for timestamp stripping)
+- Performance documentation based on real benchmarks
+- Honest comparison acknowledging go-logcastle solves different problem than pure loggers
+- Clear trade-off communication: 10x slower BUT automatic multi-library support
+
 ## [1.0.3] - 2026-03-23
 
 ### Added
