@@ -81,41 +81,82 @@ Thank you for your interest in contributing! This document provides guidelines f
 ### Prerequisites
 - Go 1.21 or higher
 - git
+- golangci-lint (for linting)
+- goimports (for formatting)
 
 ### Clone and setup
 ```bash
-git clone https://github.com/bhaskarblur/go-logcastle.git
+git clone https://github.com/yourusername/go-logcastle.git
 cd go-logcastle
 go mod download
 ```
 
 ### Running tests
 ```bash
-# Run all tests
-go test ./...
+# All tests with coverage
+make test
 
-# Run with coverage
-go test -cover ./...
+# Fast tests (no race detector)
+make test-fast
 
-# Run with race detector
-go test -race ./...
+# Specific test
+TEST=TestFallbackParsing make test-one
 
-# Run benchmarks
-go test -bench=. -benchmem
+# With coverage report in browser
+make cover
+```
+
+### Running benchmarks
+```bash
+# Run benchmarks with profiling
+make bench
+
+# View CPU profile in browser
+make profile-cpu
+
+# View memory profile
+make profile-mem
+```
+
+### Code quality
+```bash
+# Format code
+make fmt
+
+# Run linters
+make lint
+
+# Vet code
+make vet
+
+# Full pre-commit checks
+make check
 ```
 
 ### Project Structure
 ```
 go-logcastle/
-├── logcastle.go      # Main API and orchestration
-├── parser.go         # Log format detection and parsing
-├── formatter.go      # Output formatting
-├── writer.go         # Buffered writing
-├── entry.go          # Data structures
-├── level.go          # Log levels
-├── scanner.go        # High-performance scanner
-├── examples/         # Example usage
-└── *_test.go         # Tests
+├── logcastle.go          # Main API and orchestration
+├── entry.go              # LogEntry data structure
+├── level.go              # Log level definitions
+├── parser.go             # Multi-format log parser
+├── formatter.go          # Output formatters (JSON/Text/LogFmt)
+├── writer.go             # Buffered writer
+├── scanner.go            # High-performance line scanner
+├── formatter/            # Extended formatters
+│   ├── formatter.go      # Base formatter types
+│   ├── custom.go         # Custom template formatter
+│   └── json_custom.go    # JSON formatter with global fields
+├── parser/               # Extended parsers
+│   └── parser.go         # Additional parsing logic
+├── writer/               # Extended writers
+│   └── writer.go         # Additional writer logic
+├── internal/             # Internal utilities
+│   ├── constants/        # Shared constants
+│   └── utils/            # Helper functions
+├── tests/                # Integration tests
+├── benchmarks/           # Performance benchmarks
+└── examples/             # Usage examples
 ```
 
 ## Code Style
