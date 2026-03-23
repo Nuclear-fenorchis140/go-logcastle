@@ -215,8 +215,20 @@ func (p *Parser) parseZapConsole(line []byte, entry *LogEntry) bool {
 }
 
 func (p *Parser) parseGeneric(line []byte, entry *LogEntry) {
-	entry.Message = string(bytes.TrimSpace(line))
-	entry.Logger = "unknown"
+	message := string(bytes.TrimSpace(line))
+	entry.Message = message
+
+	// Smart detection: stdlib log vs fmt vs generic stdout
+	// Stdlib log format: "2026/03/23 19:37:55 message"
+	if len(message) > 19 && message[4] == '/' && message[7] == '/' && message[10] == ' ' {
+		// Has stdlib log timestamp prefix
+		entry.Logger = "log"
+	} else if len(message) > 0 {
+		// No timestamp prefix - likely fmt.Println or direct stdout write
+		entry.Logger = "stdout"
+	} else {
+		entry.Logger = "unknown"
+	}
 }
 
 func (p *Parser) parseKeyValues(data []byte, entry *LogEntry) {
