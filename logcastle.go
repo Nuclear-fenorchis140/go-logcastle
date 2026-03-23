@@ -1,18 +1,66 @@
 // Package logcastle provides high-performance centralized log orchestration.
 // It intercepts logs from any library, standardizes the format, and writes to configured outputs.
 //
-// Usage:
+// Basic Usage:
 //
 //	import "github.com/bhaskarblur/go-logcastle"
 //
 //	func main() {
 //	    logcastle.Init(logcastle.Config{
-//	        Format: logcastle.JSON,
+//	        Format: logcastle.JSON, // or Text, LogFmt
+//	        Level:  logcastle.LevelInfo,
 //	    })
 //	    defer logcastle.Close()
 //
 //	    // All logs now intercepted and standardized
+//	    log.Println("Server started")
+//	    fmt.Println("Processing request")
 //	}
+//
+// Formatting Examples:
+//
+// 1. Development Mode (Pretty + Readable):
+//
+//	logcastle.Config{
+//	    Format:        logcastle.JSON,
+//	    PrettyPrint:   true,  // Multi-line JSON
+//	    FlattenFields: true,  // Clean structure
+//	}
+//
+// 2. Production Grafana/Loki (Optimized for Label Extraction):
+//
+//	logcastle.Config{
+//	    Format:        logcastle.JSON,
+//	    FlattenFields: true,  // CRITICAL: Fields at root for Loki labels
+//	    PrettyPrint:   false, // Single-line for log aggregation
+//	    FieldOrder:    []string{"timestamp", "level", "service", "env"},
+//	}
+//
+// 3. Terminal Output with Colors:
+//
+//	logcastle.Config{
+//	    Format:      logcastle.Text, // Human-readable
+//	    ColorOutput: true,           // ERROR=red, WARN=yellow, INFO=green
+//	}
+//
+// 4. ELK/Logstash (Custom Field Ordering):
+//
+//	logcastle.Config{
+//	    Format:        logcastle.JSON,
+//	    FlattenFields: true,
+//	    FieldOrder:    []string{"timestamp", "level", "service", "message"},
+//	}
+//
+// Format Types:
+//   - JSON (default): {"timestamp":"2026-03-23T10:00:00Z","level":"info","message":"server started"}
+//   - Text: 2026-03-23T10:00:00Z INFO server started
+//   - LogFmt: time=2026-03-23T10:00:00Z level=info msg="server started"
+//
+// Formatting Options:
+//   - FlattenFields (default: true): Merge enrichment fields to root level
+//   - PrettyPrint (default: false): Multi-line JSON with indentation
+//   - ColorOutput (default: false): ANSI colors for Text format
+//   - FieldOrder (default: nil): Custom field ordering in JSON
 package logcastle
 
 import (
@@ -30,12 +78,27 @@ var (
 )
 
 // Format represents the output format for logs.
-// Use JSON for structured logging, Text for human-readable output, or LogFmt for key=value pairs.
+// Three formats are available:
+//
+// JSON (default): Structured JSON format for production and log aggregators.
+//
+//	Example: {"timestamp":"2026-03-23T10:00:00Z","level":"info","message":"server started"}
+//
+// Text: Human-readable format for terminal viewing and development.
+//
+//	Example: 2026-03-23T10:00:00Z INFO server started
+//
+// LogFmt: Key=value pairs format compatible with Logstash and other parsers.
+//
+//	Example: time=2026-03-23T10:00:00Z level=info msg="server started"
 type Format string
 
 const (
-	JSON   Format = "json"
-	Text   Format = "text"
+	// JSON is the default format - structured, machine-readable, ideal for Grafana/Loki/ELK
+	JSON Format = "json"
+	// Text is human-readable format with optional ANSI colors for terminal output
+	Text Format = "text"
+	// LogFmt is key=value format compatible with Heroku/Splunk/Logstash
 	LogFmt Format = "logfmt"
 )
 
@@ -64,8 +127,29 @@ const (
 
 // Config configures the log castle behavior and output.
 // Set Format, Level, Output destination, and other options to customize logging.
+//
+// Quick Start - Use defaults:
+//
+//	logcastle.Init(logcastle.DefaultConfig())
+//
+// Custom Configuration:
+//
+//	logcastle.Init(logcastle.Config{
+//	    Format: logcastle.JSON,  // or Text, LogFmt
+//	    Level:  logcastle.LevelInfo,
+//	    EnrichFields: map[string]interface{}{
+//	        "service": "api-server",
+//	        "env":     "production",
+//	    },
+//	})
 type Config struct {
-	// Format specifies the output format: JSON (structured), Text (readable), or LogFmt (key=value).
+	// Format specifies the output format: JSON (default, structured), Text (readable), or LogFmt (key=value).
+	//
+	// JSON example: {\"timestamp\":\"2026-03-23T10:00:00Z\",\"level\":\"info\",\"message\":\"server started\"}
+	// Text example: 2026-03-23T10:00:00Z INFO server started
+	// LogFmt example: time=2026-03-23T10:00:00Z level=info msg=\"server started\"
+	//
+	// Default: JSON
 	Format Format
 
 	// Level sets the minimum log level to capture (Debug, Info, Warn, Error, Fatal).
@@ -100,19 +184,101 @@ type Config struct {
 	// IncludeParseError controls whether to include 'log_parse_error' field in output.
 	// When false, parse error messages are omitted from formatted logs (default: false)
 	IncludeParseError bool
+
+	// FlattenFields merges EnrichFields to root level instead of nested "fields" object.
+	// This is CRITICAL for Grafana/Loki label extraction and readability.
+	//
+	// When true (default):
+	//   {"timestamp":"...","level":"info","env":"prod","service":"api"}
+	//
+	// When false:
+	//   {"timestamp":"...","level":"info","fields":{"env":"prod","service":"api"}}
+	//
+	// Default: true (recommended for production observability)
+	FlattenFields bool
+
+	// PrettyPrint formats JSON with indentation for terminal viewing and debugging.
+	// Use true for development/debugging, false for production log aggregation.
+	//
+	// When true:
+	//   {
+	//     "timestamp": "2026-03-23T10:00:00Z",
+	//     "level": "info",
+	//     "message": "server started"
+	//   }
+	//
+	// When false (default):
+	//   {"timestamp":"2026-03-23T10:00:00Z","level":"info","message":"server started"}
+	//
+	// Default: false (single-line for production)
+	PrettyPrint bool
+
+	// ColorOutput adds ANSI color codes to terminal output (Text format only, ignored in JSON).
+	// Improves visual distinction between log levels in terminal/console.
+	//
+	// When true (Text format):
+	//   ERROR appears in bold red
+	//   WARN appears in yellow
+	//   INFO appears in green
+	//   DEBUG appears in gray
+	//
+	// Example output:
+	//   2026-03-23T10:00:00Z \033[32mINFO\033[0m server started
+	//
+	// Default: false (no colors)
+	ColorOutput bool
+
+	// FieldOrder specifies which fields appear first in JSON output.
+	// Useful for optimizing log readability in ELK/Logstash/Splunk where field order matters.
+	//
+	// Example for ELK/Logstash:
+	//   FieldOrder: []string{"timestamp", "level", "service", "env", "message"}
+	//
+	// Output:
+	//   {"timestamp":"...","level":"info","service":"api","env":"prod","message":"...","caller":"..."}
+	//
+	// Fields not in FieldOrder appear after, in alphabetical order.
+	// Default: nil (standard order: timestamp, level, message, then others)
+	FieldOrder []string
 }
 
 // DefaultConfig returns a Config with sensible defaults for most applications.
-// JSON format, Info level, 10000 buffer size, 100ms flush interval.
+//
+// Defaults:
+//   - Format: JSON (structured logs)
+//   - Level: LevelInfo (filters out debug logs)
+//   - Output: os.Stdout (standard output)
+//   - BufferSize: 10000 (high throughput)
+//   - FlushInterval: 100ms (balance between latency and performance)
+//   - FlattenFields: true (Grafana/Loki optimized)
+//   - PrettyPrint: false (single-line for production)
+//   - ColorOutput: false (no ANSI codes)
+//   - IncludeLoggerField: false (clean output)
+//   - IncludeParseError: false (clean output)
+//
+// Example usage:
+//
+//	config := logcastle.DefaultConfig()
+//	config.Level = logcastle.LevelDebug
+//	config.EnrichFields = map[string]interface{}{
+//	    "service": "api-server",
+//	    "env":     "production",
+//	}
+//	logcastle.Init(config)
 func DefaultConfig() Config {
 	return Config{
-		Format:          JSON,
-		Level:           LevelInfo,
-		Output:          os.Stdout,
-		BufferSize:      10000,
-		FlushInterval:   100 * time.Millisecond,
-		EnrichFields:    make(map[string]interface{}),
-		TimestampFormat: TimestampFormatRFC3339Nano, // Default format
+		Format:             JSON,
+		Level:              LevelInfo,
+		Output:             os.Stdout,
+		BufferSize:         10000,
+		FlushInterval:      100 * time.Millisecond,
+		EnrichFields:       make(map[string]interface{}),
+		TimestampFormat:    TimestampFormatRFC3339Nano,
+		FlattenFields:      true,  // Flatten for better readability
+		PrettyPrint:        false, // Single-line for production
+		ColorOutput:        false, // No colors by default
+		IncludeLoggerField: false, // Clean output
+		IncludeParseError:  false, // Clean output
 	}
 }
 
@@ -199,7 +365,9 @@ type Castle struct {
 
 func newCastle(config Config) (*Castle, error) {
 	parser := NewParser()
-	formatter := NewFormatter(config.Format, config.TimestampFormat, config.CustomTimestampFormat, config.IncludeLoggerField, config.IncludeParseError)
+	formatter := NewFormatter(config.Format, config.TimestampFormat, config.CustomTimestampFormat,
+		config.IncludeLoggerField, config.IncludeParseError, config.FlattenFields,
+		config.PrettyPrint, config.ColorOutput, config.FieldOrder)
 	writer := NewBufferedWriter(config.Output, config.BufferSize, config.FlushInterval)
 
 	return &Castle{
