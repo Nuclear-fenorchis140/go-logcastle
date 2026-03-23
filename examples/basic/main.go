@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/yourusername/go-logcastle"
+	"github.com/bhaskarblur/go-logcastle"
 )
 
 func main() {

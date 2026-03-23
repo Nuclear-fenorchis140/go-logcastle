@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	logcastle "github.com/yourusername/go-logcastle"
+	logcastle "github.com/bhaskarblur/go-logcastle"
 )
 
 func TestBasicInterception(t *testing.T) {

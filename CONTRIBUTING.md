@@ -86,7 +86,7 @@ Thank you for your interest in contributing! This document provides guidelines f
 
 ### Clone and setup
 ```bash
-git clone https://github.com/yourusername/go-logcastle.git
+git clone https://github.com/bhaskarblur/go-logcastle.git
 cd go-logcastle
 go mod download
 ```

@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	logcastle "github.com/yourusername/go-logcastle"
-	"github.com/yourusername/go-logcastle/formatter"
-	"github.com/yourusername/go-logcastle/parser"
+	logcastle "github.com/bhaskarblur/go-logcastle"
+	"github.com/bhaskarblur/go-logcastle/formatter"
+	"github.com/bhaskarblur/go-logcastle/parser"
 )
 
 // Benchmark parsing performance

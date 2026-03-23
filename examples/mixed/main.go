@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/sirupsen/logrus"
-	"github.com/yourusername/go-logcastle"
+	"github.com/bhaskarblur/go-logcastle"
 	"go.uber.org/zap"
 )
 

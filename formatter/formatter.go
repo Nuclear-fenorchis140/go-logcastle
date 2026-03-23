@@ -7,7 +7,7 @@ import (
 	"time"
 
 	jsoniter "github.com/json-iterator/go"
-	logcastle "github.com/yourusername/go-logcastle"
+	logcastle "github.com/bhaskarblur/go-logcastle"
 )
 
 var jsonAPI = jsoniter.ConfigCompatibleWithStandardLibrary

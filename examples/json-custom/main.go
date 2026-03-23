@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/yourusername/go-logcastle/formatter"
+	"github.com/bhaskarblur/go-logcastle/formatter"
 )
 
 func main() {

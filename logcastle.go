@@ -3,7 +3,7 @@
 //
 // Usage:
 //
-//	import "github.com/yourusername/go-logcastle"
+//	import "github.com/bhaskarblur/go-logcastle"
 //
 //	func main() {
 //	    logcastle.Init(logcastle.Config{

@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/yourusername/go-logcastle"
+	"github.com/bhaskarblur/go-logcastle"
 	"go.uber.org/zap"
 )
 

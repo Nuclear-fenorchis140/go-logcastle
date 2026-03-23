@@ -26,7 +26,7 @@
 ## 📦 Installation
 
 ```bash
-go get github.com/yourusername/go-logcastle
+go get github.com/bhaskarblur/go-logcastle
 ```
 
 **Requirements**: Go 1.21+
@@ -40,7 +40,7 @@ package main
 
 import (
     "fmt"
-    logcastle "github.com/yourusername/go-logcastle"
+    logcastle "github.com/bhaskarblur/go-logcastle"
 )
 
 func main() {
@@ -64,7 +64,7 @@ import (
     "fmt"
     "github.com/sirupsen/logrus"
     "go.uber.org/zap"
-    logcastle "github.com/yourusername/go-logcastle"
+    logcastle "github.com/bhaskarblur/go-logcastle"
 )
 
 func main() {
@@ -241,7 +241,7 @@ The `log_parse_error` field indicates parsing issues - no logs are lost!
 Add service metadata to **every** log automatically:
 
 ```go
-import "github.com/yourusername/go-logcastle/formatter"
+import "github.com/bhaskarblur/go-logcastle/formatter"
 
 // Setup once at startup
 formatter.InitRuntimeFields("production", map[string]string{
