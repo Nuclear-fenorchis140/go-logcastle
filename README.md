@@ -309,7 +309,7 @@ f.RemoveGlobalField("debug_info")
 
 ## 📊 Performance
 
-### Benchmarks (Apple M1 Pro)
+### Benchmarks (Apple M2)
 
 ```
 BenchmarkParse-8               3,500,000    ~350 ns/op    128 B/op    2 allocs/op
@@ -325,17 +325,6 @@ BenchmarkBufferedWrite-8      10,000,000    ~120 ns/op      0 B/op    0 allocs/o
 - **Memory**: <10MB/sec allocation rate
 - **CPU**: ~5-10% overhead on typical workloads
 - **Overhead**: <1ms p99 latency added to application
-
-### Why json-iterator over SIMD JSON?
-
-We use **json-iterator** (2-3x faster than stdlib) instead of SIMD-based parsers because:
-
-1. **Portability**: SIMD requires AVX2/AVX-512, doesn't work on ARM (M1 Macs, Raspberry Pi)
-2. **Log Size**: Typical logs are 50-500 bytes - SIMD overhead not worth it
-3. **Performance**: On small logs, json-iterator (300ns) vs simdjson (250ns) = **only 50ns difference**
-4. **Maturity**: json-iterator is battle-tested (Kubernetes, Istio use it)
-
-For details, see [PERFORMANCE.md](PERFORMANCE.md).
 
 ## 🧪 Testing
 
@@ -512,4 +501,4 @@ MIT License - see [LICENSE](LICENSE)
 
 **⭐ Star us on GitHub** if go-logcastle helps your project!
 
-**📖 Read more**: [PERFORMANCE.md](PERFORMANCE.md) | [CHANGELOG.md](CHANGELOG.md) | [Examples](examples/)
+**📖 Read more**: [CHANGELOG.md](CHANGELOG.md) | [Examples](examples/)

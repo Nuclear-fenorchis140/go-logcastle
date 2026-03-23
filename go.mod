@@ -1,4 +1,4 @@
-module github.com/yourusername/go-logcastle
+module github.com/bhaskarblur/go-logcastle
 
 go 1.21
 
