@@ -647,6 +647,24 @@ logcastle.Init(config)
 2. **Goroutine Timing**: In tests, add `time.Sleep()` after logging for processing.
 3. **Binary Logs**: Protobuf/binary logs not supported (must be text).
 4. **Performance**: Adds ~300ns per log - not suitable for ultra-low-latency (<1μs) requirements.
+5. **Multi-line Content** (Text format only): 
+   - Text format splits on `\n` (newlines), treating each line as a separate log entry
+   - **Problem**: Multi-line content (JSON bodies, LLM responses, SQL queries) gets split into fragments
+   - **Solution**: **Use JSON format for applications that log multi-line content**
+   - Example issue:
+     ```
+     // Your code:
+     log.Println("Response:", multiLineJSON)
+     
+     // Text format output (garbled):
+     2026-03-23 10:00:00 INFO Response: { env=DEVELOPMENT service=api
+     2026-03-23 10:00:00 INFO   "data": "value" env=DEVELOPMENT service=api
+     2026-03-23 10:00:00 INFO } env=DEVELOPMENT service=api
+     
+     // JSON format output (correct):
+     {"timestamp":"2026-03-23T10:00:00Z","level":"info","message":"Response: {...}","env":"DEVELOPMENT"}
+     ```
+   - **Recommendation**: Use JSON format for production, especially with LLM/AI applications, databases, or APIs that log complex payloads
 
 ## 🛠️ Troubleshooting
 
