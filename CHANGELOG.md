@@ -2,6 +2,53 @@
 
 All notable changes to go-logcastle will be documented in this file.
 
+## [1.0.3] - 2026-03-23
+
+### Added
+- **FlattenFields config option** (default: true) - Merges enrichment fields to root level instead of nested "fields" object
+  - Critical for Grafana/Loki label extraction and query performance
+  - Example: `{"env":"prod","service":"api"}` vs `{"fields":{"env":"prod","service":"api"}}`
+- **PrettyPrint config option** (default: false) - Multi-line JSON with indentation for development/debugging
+  - Improves terminal readability during development
+  - Single-line output remains default for production log aggregation
+- **ColorOutput config option** (default: false) - ANSI color codes for Text format terminal output
+  - ERROR appears in bold red, WARN in yellow, INFO in green, DEBUG in gray
+  - Only applies to Text format (ignored in JSON/LogFmt)
+- **FieldOrder config option** - Custom field ordering in JSON output
+  - Optimizes log readability in ELK/Logstash/Splunk where field order matters
+  - Example: `FieldOrder: []string{"timestamp", "level", "service", "env", "message"}`
+  - Unspecified fields appear after ordered fields, in alphabetical order
+- **Comprehensive examples** in `examples/formatting/main.go` demonstrating:
+  - Terminal development mode (pretty print + flattened)
+  - Production Grafana/Loki mode (single-line + flattened)
+  - ELK/Logstash mode (custom field ordering)
+  - Terminal with ANSI colors (Text format)
+- **Complete test coverage** for all new features:
+  - `TestFlattenFields` and `TestNestedFields` - Field flattening behavior
+  - `TestPrettyPrint` and `TestSingleLineJSON` - Output formatting
+  - `TestColorOutput` and `TestNoColorOutput` - ANSI color codes
+  - `TestFieldOrder` - Custom field ordering
+
+### Improved
+- **Package documentation** with comprehensive usage examples for each format type
+- **Config struct documentation** with before/after examples showing exactly what each option does
+- **Formatter documentation** explaining all format types, advanced features, and use cases
+- **DefaultConfig documentation** listing all defaults with explanations
+- Format type constants now include detailed descriptions and example outputs
+
+### Features
+- **Production observability optimizations** for modern log aggregation platforms:
+  - Grafana/Loki: Flattened fields enable label extraction from root-level fields
+  - ELK/Logstash: Custom field ordering improves parsing performance and readability
+  - Terminal/Console: ANSI colors and pretty printing for better developer experience
+- **Format flexibility**: Choose between flat vs nested structure based on your observability stack
+- **Development/Production modes**: Easy switching between readable (pretty, colored) and optimized (single-line, flat) outputs
+
+### Technical Highlights
+- All 21 tests passing including 7 new formatting tests
+- Zero breaking changes - all new features are opt-in with sensible defaults
+- FlattenFields defaults to `true` for optimal Grafana/Loki experience out of the box
+
 ## [1.0.2] - 2026-03-23
 
 ### Added

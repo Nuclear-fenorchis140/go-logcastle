@@ -22,6 +22,11 @@
 - ✅ **Flexible Timestamps**: 8 built-in formats + custom (RFC3339, Unix, DateTime, etc.)
 - ✅ **Global Fields**: Add service metadata (name, version, region) to all logs automatically
 - ✅ **Runtime Context**: Automatic hostname, PID, goroutine count enrichment
+- ✅ **Advanced Formatting** (v1.0.3+): 
+  - **FlattenFields**: Grafana/Loki label extraction optimization
+  - **PrettyPrint**: Multi-line JSON for terminal readability
+  - **ColorOutput**: ANSI colors for Text format (ERROR=red, WARN=yellow, etc.)
+  - **FieldOrder**: Custom field ordering for ELK/Logstash pipelines
 
 ## 📦 Installation
 
@@ -136,7 +141,7 @@ func main() {
 
 ### Output Formats
 
-#### JSON (Structured)
+#### JSON (Structured - Default)
 ```go
 logcastle.Config{Format: logcastle.JSON}
 // Output: {"timestamp":"2026-03-23T12:00:00Z","level":"info","message":"test"}
@@ -145,13 +150,160 @@ logcastle.Config{Format: logcastle.JSON}
 #### Text (Human-Readable)
 ```go
 logcastle.Config{Format: logcastle.Text}
-// Output: 2026-03-23T12:00:00Z info [logger] test
+// Output: 2026-03-23T12:00:00Z INFO test
 ```
 
 #### LogFmt (Key=Value)
 ```go
 logcastle.Config{Format: logcastle.LogFmt}
 // Output: timestamp=2026-03-23T12:00:00Z level=info message="test"
+```
+
+### Advanced Formatting Options (v1.0.3+)
+
+#### FlattenFields - Grafana/Loki Optimization
+
+**Critical for production observability!** Merges enrichment fields to root level.
+
+```go
+// Flattened (default: true) - RECOMMENDED for Grafana/Loki
+logcastle.Config{
+    FlattenFields: true,
+    EnrichFields: map[string]interface{}{
+        "env":     "production",
+        "service": "payment-service",
+    },
+}
+// Output: {"timestamp":"...","level":"info","env":"production","service":"payment-service",...}
+
+// Nested (false) - Fields grouped under "fields" key
+logcastle.Config{
+    FlattenFields: false,
+    EnrichFields: map[string]interface{}{
+        "env": "prod",
+    },
+}
+// Output: {"timestamp":"...","level":"info","fields":{"env":"prod"},...}
+```
+
+**Why flatten?** Grafana/Loki can extract labels from root-level fields for filtering: `{service="payment-service", env="production"}`. Nested fields cannot be used as labels.
+
+#### PrettyPrint - Development Readability
+
+Multi-line JSON with indentation for terminal viewing.
+
+```go
+// Pretty (true) - Development/Debugging
+logcastle.Config{
+    Format:      logcastle.JSON,
+    PrettyPrint: true,
+}
+// Output:
+// {
+//   "timestamp": "2026-03-23T12:00:00Z",
+//   "level": "info",
+//   "message": "server started"
+// }
+
+// Single-line (default: false) - Production
+logcastle.Config{
+    PrettyPrint: false,
+}
+// Output: {"timestamp":"2026-03-23T12:00:00Z","level":"info","message":"server started"}
+```
+
+#### ColorOutput - Terminal Colors
+
+ANSI color codes for Text format (ignored in JSON/LogFmt).
+
+```go
+logcastle.Config{
+    Format:      logcastle.Text,
+    ColorOutput: true,
+}
+// Output (with colors):
+// 2026-03-23T12:00:00Z \033[31mERROR\033[0m Failed to connect  (red)
+// 2026-03-23T12:00:00Z \033[33mWARN\033[0m High memory usage   (yellow)
+// 2026-03-23T12:00:00Z \033[32mINFO\033[0m Server started      (green)
+// 2026-03-23T12:00:00Z \033[90mDEBUG\033[0m Cache hit          (gray)
+```
+
+#### FieldOrder - ELK/Logstash Optimization
+
+Specify which fields appear first in JSON output.
+
+```go
+logcastle.Config{
+    Format:        logcastle.JSON,
+    FlattenFields: true,
+    FieldOrder:    []string{"timestamp", "level", "service", "env", "message"},
+    EnrichFields: map[string]interface{}{
+        "service": "api-gateway",
+        "env":     "staging",
+    },
+}
+// Output: {"timestamp":"...","level":"info","service":"api-gateway","env":"staging","message":"...","caller":"..."}
+// Fields appear in specified order, remaining fields alphabetically after
+```
+
+### Common Configuration Patterns
+
+#### Development Mode (Terminal)
+```go
+logcastle.Config{
+    Format:        logcastle.JSON,
+    Level:         logcastle.LevelDebug,    // See all logs
+    PrettyPrint:   true,                    // Readable multi-line
+    FlattenFields: true,                    // Clean structure
+    EnrichFields: map[string]interface{}{
+        "env":     "development",
+        "service": "my-service",
+    },
+}
+```
+
+#### Development with Colors (Text Format)
+```go
+logcastle.Config{
+    Format:             logcastle.Text,
+    Level:              logcastle.LevelDebug,
+    ColorOutput:        true,                    // ANSI colors
+    IncludeLoggerField: true,                    // Show log source
+    EnrichFields: map[string]interface{}{
+        "service": "my-service",
+    },
+}
+```
+
+#### Production - Grafana/Loki
+```go
+logcastle.Config{
+    Format:        logcastle.JSON,
+    Level:         logcastle.LevelInfo,
+    FlattenFields: true,                    // CRITICAL for Loki labels
+    PrettyPrint:   false,                   // Single-line for aggregation
+    EnrichFields: map[string]interface{}{
+        "env":       "production",
+        "service":   "payment-service",
+        "region":    "us-east-1",
+        "pod":       os.Getenv("POD_NAME"),
+    },
+}
+```
+
+#### Production - ELK/Logstash
+```go
+logcastle.Config{
+    Format:        logcastle.JSON,
+    Level:         logcastle.LevelInfo,
+    FlattenFields: true,
+    FieldOrder:    []string{"timestamp", "level", "service", "message"},
+    EnrichFields: map[string]interface{}{
+        "service":  "user-api",
+        "cluster":  "k8s-prod",
+        "hostname": os.Getenv("HOSTNAME"),
+    },
+}
 ```
 
 ### Timestamp Formats
@@ -378,10 +530,12 @@ See [examples/](examples/) directory:
 - **[fallback-parsing](examples/fallback-parsing/)** - Unparseable log handling
 - **[timestamp-formats](examples/timestamp-formats/)** - Timestamp customization
 - **[json-custom](examples/json-custom/)** - Global fields & runtime context
+- **[formatting](examples/formatting/)** - **NEW v1.0.3**: FlattenFields, PrettyPrint, ColorOutput, FieldOrder demos
 
 Run examples:
 ```bash
 go run examples/basic/main.go
+go run examples/formatting/main.go  # See all formatting options
 go run examples/json-custom/main.go
 ```
 
@@ -435,7 +589,56 @@ type Config struct {
     
     // CustomTimestampFormat: Go time layout (when TimestampFormat=Custom)
     CustomTimestampFormat string // Default: ""
+    
+    // IncludeLoggerField: Include 'logger' field showing log source
+    IncludeLoggerField bool // Default: false
+    
+    // IncludeParseError: Include 'log_parse_error' field for parsing failures
+    IncludeParseError bool // Default: false
+    
+    // FlattenFields: Merge enrichment fields to root level (v1.0.3+)
+    // true:  {"env":"prod","service":"api",...}
+    // false: {"fields":{"env":"prod","service":"api"},...}
+    FlattenFields bool // Default: true (RECOMMENDED for Grafana/Loki)
+    
+    // PrettyPrint: Multi-line JSON with indentation (v1.0.3+)
+    // true:  Multi-line for development
+    // false: Single-line for production
+    PrettyPrint bool // Default: false
+    
+    // ColorOutput: ANSI colors for Text format (v1.0.3+)
+    // Only applies to Text format (ignored in JSON/LogFmt)
+    ColorOutput bool // Default: false
+    
+    // FieldOrder: Custom field ordering in JSON (v1.0.3+)
+    // Example: []string{"timestamp", "level", "service", "message"}
+    FieldOrder []string // Default: nil
 }
+```
+
+### Quick Config Examples
+
+```go
+// Quick start with defaults
+logcastle.Init(logcastle.DefaultConfig())
+
+// Development mode
+config := logcastle.DefaultConfig()
+config.Level = logcastle.LevelDebug
+config.PrettyPrint = true
+logcastle.Init(config)
+
+// Production mode
+config := logcastle.Config{
+    Format:        logcastle.JSON,
+    Level:         logcastle.LevelInfo,
+    FlattenFields: true,
+    EnrichFields: map[string]interface{}{
+        "service": "my-service",
+        "env":     "production",
+    },
+}
+logcastle.Init(config)
 ```
 
 ## 🚨 Known Limitations
