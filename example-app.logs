@@ -1,0 +1,910 @@
+
+2026/03/23 19:26:21 ✅ Log aggregation (go-logcastle) initialized successfully
+2026/03/23 19:26:22 ✨ Connected to MongoDB.
+2026/03/23 19:26:22 Redis connection - Host: localhost, Port: 6379, Username: 'neobase', Password: *******
+2026/03/23 19:26:22 ✨ Connected to Redis successfully
+2026/03/23 19:26:22 🚀 Initialized Repository : Redis
+2026/03/23 19:26:22 🚀 Initialized Repository : Visualization
+2026/03/23 19:26:22 🚀 Initialized Repository : Dashboard
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:   export GIN_MODE=release
+ - using code:  gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /health                   --> neobase-ai/internal/apis/routes.SetupDefaultRoutes.func1 (5 handlers)
+[GIN-debug] GET    /api/github/stats         --> neobase-ai/internal/apis/handlers.(*GitHubHandler).GetGitHubStats-fm (5 handlers)
+2026/03/23 19:26:23 ✅ SMTP Client Setup Successfully
+2026/03/23 19:26:23    📧 Email: neobaseai@gmail.com
+2026/03/23 19:26:23    👤 Name: NeoBase - AI Database Copilot
+2026/03/23 19:26:23    🌐 Host: smtp.gmail.com:587
+2026/03/23 19:26:23    🔒 Secure: false
+[GIN-debug] POST   /api/auth/signup          --> neobase-ai/internal/apis/handlers.(*AuthHandler).Signup-fm (5 handlers)
+[GIN-debug] POST   /api/auth/login           --> neobase-ai/internal/apis/handlers.(*AuthHandler).Login-fm (5 handlers)
+[GIN-debug] POST   /api/auth/generate-signup-secret --> neobase-ai/internal/apis/handlers.(*AuthHandler).GenerateUserSignupSecret-fm (5 handlers)
+[GIN-debug] POST   /api/auth/forgot-password --> neobase-ai/internal/apis/handlers.(*AuthHandler).ForgotPassword-fm (5 handlers)
+[GIN-debug] POST   /api/auth/reset-password  --> neobase-ai/internal/apis/handlers.(*AuthHandler).ResetPassword-fm (5 handlers)
+[GIN-debug] POST   /api/auth/validate-signup-secret --> neobase-ai/internal/apis/handlers.(*AuthHandler).ValidateSignupSecret-fm (5 handlers)
+[GIN-debug] POST   /api/auth/google/callback --> neobase-ai/internal/apis/handlers.(*AuthHandler).GoogleOAuthCallback-fm (5 handlers)
+[GIN-debug] GET    /api/auth/                --> neobase-ai/internal/apis/handlers.(*AuthHandler).GetUser-fm (6 handlers)
+[GIN-debug] POST   /api/auth/logout          --> neobase-ai/internal/apis/handlers.(*AuthHandler).Logout-fm (6 handlers)
+[GIN-debug] GET    /api/auth/refresh-token   --> neobase-ai/internal/apis/handlers.(*AuthHandler).RefreshToken-fm (6 handlers)
+2026/03/23 19:26:23 DBManager -> Registered driver for type: postgresql
+2026/03/23 19:26:23 DBManager -> Registered driver for type: yugabytedb
+2026/03/23 19:26:23 DBManager -> Registered driver for type: mysql
+2026/03/23 19:26:23 DBManager -> Registered driver for type: clickhouse
+2026/03/23 19:26:23 DBManager -> Registered driver for type: mongodb
+2026/03/23 19:26:23 DBManager -> Registered driver for type: spreadsheet
+2026/03/23 19:26:23 DBManager -> Registered driver for type: google_sheets
+2026/03/23 19:26:23 DBManager -> Registered driver for type: postgresql
+2026/03/23 19:26:23 DBManager -> Registered driver for type: yugabytedb
+2026/03/23 19:26:23 DBManager -> Registered driver for type: mysql
+2026/03/23 19:26:23 DBManager -> Registered driver for type: clickhouse
+2026/03/23 19:26:23 DBManager -> Registered driver for type: mongodb
+2026/03/23 19:26:23 DBManager -> Registered driver for type: spreadsheet
+2026/03/23 19:26:23 GetSystemPrompt -> provider: gemini, dbType: postgresql, nonTechMode: false
+2026/03/23 19:26:23 GetSystemPrompt -> Final prompt length: 9890 characters
+2026/03/23 19:26:23 GetSystemPrompt -> provider: gemini, dbType: yugabytedb, nonTechMode: false
+2026/03/23 19:26:23 GetSystemPrompt -> Final prompt length: 9372 characters
+2026/03/23 19:26:23 GetSystemPrompt -> provider: gemini, dbType: mysql, nonTechMode: false
+2026/03/23 19:26:23 GetSystemPrompt -> Final prompt length: 9494 characters
+2026/03/23 19:26:23 GetSystemPrompt -> provider: gemini, dbType: clickhouse, nonTechMode: false
+2026/03/23 19:26:23 GetSystemPrompt -> Final prompt length: 9279 characters
+2026/03/23 19:26:23 GetSystemPrompt -> provider: gemini, dbType: mongodb, nonTechMode: false
+2026/03/23 19:26:23 GetSystemPrompt -> Final prompt length: 18117 characters
+2026/03/23 19:26:23 GetSystemPrompt -> provider: gemini, dbType: spreadsheet, nonTechMode: false
+2026/03/23 19:26:23 GetSystemPrompt -> Final prompt length: 9890 characters
+2026/03/23 19:26:23 DBManager -> startCleanupRoutine -> Starting cleanup routine with interval: 10m0s
+2026/03/23 19:26:23 Using Gemini as default LLM client
+2026/03/23 19:26:23 Embedding -> Gemini provider initialized with model: gemini-embedding-001 (using REST API at https://generativelanguage.googleapis.com/v1beta)
+2026/03/23 19:26:23 Embedding provider initialized: gemini/gemini-embedding-001 (dimension: 768)
+2026/03/23 19:26:23 VectorDB -> Qdrant client created for localhost:6334 (TLS: false)
+2026/03/23 19:26:23 Qdrant client initialized: localhost:6334
+2026/03/23 19:26:23 VectorizationService -> Initialized with gemini/gemini-embedding-001 (dimension: 768)
+[GIN-debug] POST   /api/chats                --> neobase-ai/internal/apis/handlers.(*ChatHandler).Create-fm (6 handlers)
+[GIN-debug] GET    /api/chats                --> neobase-ai/internal/apis/handlers.(*ChatHandler).List-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id            --> neobase-ai/internal/apis/handlers.(*ChatHandler).GetByID-fm (6 handlers)
+[GIN-debug] PATCH  /api/chats/:id            --> neobase-ai/internal/apis/handlers.(*ChatHandler).Update-fm (6 handlers)
+[GIN-debug] DELETE /api/chats/:id            --> neobase-ai/internal/apis/handlers.(*ChatHandler).Delete-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/duplicate  --> neobase-ai/internal/apis/handlers.(*ChatHandler).Duplicate-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/messages   --> neobase-ai/internal/apis/handlers.(*ChatHandler).ListMessages-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/messages   --> neobase-ai/internal/apis/handlers.(*ChatHandler).CreateMessage-fm (6 handlers)
+[GIN-debug] PATCH  /api/chats/:id/messages/:messageId --> neobase-ai/internal/apis/handlers.(*ChatHandler).UpdateMessage-fm (6 handlers)
+[GIN-debug] DELETE /api/chats/:id/messages   --> neobase-ai/internal/apis/handlers.(*ChatHandler).DeleteMessages-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/messages/:messageId/pin --> neobase-ai/internal/apis/handlers.(*ChatHandler).PinMessage-fm (6 handlers)
+[GIN-debug] DELETE /api/chats/:id/messages/:messageId/pin --> neobase-ai/internal/apis/handlers.(*ChatHandler).UnpinMessage-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/messages/pinned --> neobase-ai/internal/apis/handlers.(*ChatHandler).ListPinnedMessages-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/connect    --> neobase-ai/internal/apis/handlers.(*ChatHandler).ConnectDB-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/disconnect --> neobase-ai/internal/apis/handlers.(*ChatHandler).DisconnectDB-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/connection-status --> neobase-ai/internal/apis/handlers.(*ChatHandler).GetDBConnectionStatus-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/refresh-schema --> neobase-ai/internal/apis/handlers.(*ChatHandler).RefreshSchema-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/tables     --> neobase-ai/internal/apis/handlers.(*ChatHandler).GetTables-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/stream     --> neobase-ai/internal/apis/handlers.(*ChatHandler).StreamChat-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/stream/cancel --> neobase-ai/internal/apis/handlers.(*ChatHandler).CancelStream-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/queries/execute --> neobase-ai/internal/apis/handlers.(*ChatHandler).ExecuteQuery-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/queries/rollback --> neobase-ai/internal/apis/handlers.(*ChatHandler).RollbackQuery-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/queries/cancel --> neobase-ai/internal/apis/handlers.(*ChatHandler).CancelQueryExecution-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/queries/results --> neobase-ai/internal/apis/handlers.(*ChatHandler).GetQueryResults-fm (6 handlers)
+[GIN-debug] PATCH  /api/chats/:id/queries/edit --> neobase-ai/internal/apis/handlers.(*ChatHandler).EditQuery-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/recommendations --> neobase-ai/internal/apis/handlers.(*ChatHandler).GetQueryRecommendations-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/import-metadata --> neobase-ai/internal/apis/handlers.(*ChatHandler).GetImportMetadata-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/knowledge-base --> neobase-ai/internal/apis/handlers.(*ChatHandler).GetKnowledgeBase-fm (6 handlers)
+[GIN-debug] PUT    /api/chats/:id/knowledge-base --> neobase-ai/internal/apis/handlers.(*ChatHandler).UpdateKnowledgeBase-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/messages/:messageId/visualizations --> neobase-ai/internal/apis/handlers.(*VisualizationHandler).GenerateVisualization-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/execute-chart --> neobase-ai/internal/apis/handlers.(*VisualizationHandler).ExecuteChartQuery-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/visualization-data --> neobase-ai/internal/apis/handlers.(*VisualizationHandler).GetVisualizationData-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/dashboards --> neobase-ai/internal/apis/handlers.(*DashboardHandler).CreateDashboard-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/dashboards --> neobase-ai/internal/apis/handlers.(*DashboardHandler).ListDashboards-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/dashboards/:dashboardId --> neobase-ai/internal/apis/handlers.(*DashboardHandler).GetDashboard-fm (6 handlers)
+[GIN-debug] PATCH  /api/chats/:id/dashboards/:dashboardId --> neobase-ai/internal/apis/handlers.(*DashboardHandler).UpdateDashboard-fm (6 handlers)
+[GIN-debug] DELETE /api/chats/:id/dashboards/:dashboardId --> neobase-ai/internal/apis/handlers.(*DashboardHandler).DeleteDashboard-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/dashboards/:dashboardId/widgets --> neobase-ai/internal/apis/handlers.(*DashboardHandler).AddWidget-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/dashboards/:dashboardId/widgets/:widgetId/edit --> neobase-ai/internal/apis/handlers.(*DashboardHandler).EditWidget-fm (6 handlers)
+[GIN-debug] DELETE /api/chats/:id/dashboards/:dashboardId/widgets/:widgetId --> neobase-ai/internal/apis/handlers.(*DashboardHandler).DeleteWidget-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/dashboards/suggest-templates --> neobase-ai/internal/apis/handlers.(*DashboardHandler).GenerateBlueprints-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/dashboards/create-from-blueprints --> neobase-ai/internal/apis/handlers.(*DashboardHandler).CreateFromBlueprints-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/dashboards/:dashboardId/regenerate --> neobase-ai/internal/apis/handlers.(*DashboardHandler).RegenerateDashboard-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/dashboards/:dashboardId/refresh --> neobase-ai/internal/apis/handlers.(*DashboardHandler).RefreshDashboard-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/dashboards/:dashboardId/widgets/:widgetId/refresh --> neobase-ai/internal/apis/handlers.(*DashboardHandler).RefreshWidget-fm (6 handlers)
+[GIN-debug] GET    /api/chats/:id/dashboards/:dashboardId/export --> neobase-ai/internal/apis/handlers.(*DashboardHandler).ExportDashboard-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/dashboards/import/validate --> neobase-ai/internal/apis/handlers.(*DashboardHandler).ValidateImport-fm (6 handlers)
+[GIN-debug] POST   /api/chats/:id/dashboards/import --> neobase-ai/internal/apis/handlers.(*DashboardHandler).ImportDashboard-fm (6 handlers)
+[GIN-debug] POST   /api/enterprise/waitlist  --> neobase-ai/internal/apis/handlers.(*WaitlistHandler).AddToWaitlist-fm (5 handlers)
+[GIN-debug] POST   /api/upload/:chatID/file  --> neobase-ai/internal/apis/handlers.(*UploadHandler).UploadFile-fm (6 handlers)
+[GIN-debug] GET    /api/upload/:chatID/tables/:tableName --> neobase-ai/internal/apis/handlers.(*UploadHandler).GetTableData-fm (6 handlers)
+[GIN-debug] DELETE /api/upload/:chatID/tables/:tableName --> neobase-ai/internal/apis/handlers.(*UploadHandler).DeleteTable-fm (6 handlers)
+[GIN-debug] DELETE /api/upload/:chatID/tables/:tableName/rows/:rowID --> neobase-ai/internal/apis/handlers.(*UploadHandler).DeleteRow-fm (6 handlers)
+[GIN-debug] GET    /api/upload/:chatID/tables/:tableName/download --> neobase-ai/internal/apis/handlers.(*UploadHandler).DownloadTableData-fm (6 handlers)
+[GIN-debug] GET    /api/google/auth          --> neobase-ai/internal/apis/handlers.(*GoogleOAuthHandler).InitiateGoogleAuth-fm (5 handlers)
+[GIN-debug] GET    /api/google/callback      --> neobase-ai/internal/apis/handlers.(*GoogleOAuthHandler).HandleGoogleCallback-fm (5 handlers)
+[GIN-debug] POST   /api/google/validate-sheet --> neobase-ai/internal/apis/handlers.(*GoogleOAuthHandler).ValidateGoogleSheetAccess-fm (6 handlers)
+[GIN-debug] POST   /api/google/refresh-token --> neobase-ai/internal/apis/handlers.(*GoogleOAuthHandler).RefreshGoogleToken-fm (6 handlers)
+[GIN-debug] GET    /api/llm-models           --> neobase-ai/internal/apis/handlers.(*LLMModelsHandler).GetSupportedModels-fm (5 handlers)
+[GIN-debug] GET    /api/llm-models/provider/:provider --> neobase-ai/internal/apis/handlers.(*LLMModelsHandler).GetModelsByProvider-fm (5 handlers)
+[GIN-debug] GET    /api/llm-models/:modelId  --> neobase-ai/internal/apis/handlers.(*LLMModelsHandler).GetModelDetails-fm (5 handlers)
+[GIN-debug] GET    /api/llm-models/default/config --> neobase-ai/internal/apis/handlers.(*LLMModelsHandler).GetDefaultModel-fm (5 handlers)
+2026/03/23 19:26:23 LLM Models routes set up successfully
+2026/03/23 19:26:23 Starting server on port 3001
+{"fields":{"service":"neobase-dba-api"},"level":"info","log_parse_error":"parsed as unstructured text","logger":"unknown","message":"✨ Welcome to NeoBase! Running in DEVELOPMENT Mode","timestamp":"2026-03-23 13:56:23"}
+{"fields":{"service":"neobase-dba-api"},"level":"info","log_parse_error":"parsed as unstructured text","logger":"unknown","message":"📱 Client UI: http://localhost:5174","timestamp":"2026-03-23 13:56:23"}
+{"fields":{"service":"neobase-dba-api"},"level":"info","log_parse_error":"parsed as unstructured text","logger":"unknown","message":"🌐 Landing Page: http://localhost:5173","timestamp":"2026-03-23 13:56:23"}
+{"fields":{"service":"neobase-dba-api"},"level":"info","log_parse_error":"parsed as unstructured text","logger":"unknown","message":"🚀 CORS Origins: [http://localhost:5174 http://localhost:5173]","timestamp":"2026-03-23 13:56:23"}
+[GIN] 2026/03/23 - 19:26:30 | 204 |    1.376958ms |             ::1 | OPTIONS  "/api/chats/680cb77f0386e114117ce51e/stream?stream_id=mn38zka2-peq4lo"
+2026/03/23 19:26:30 Getting Redis key: blacklist:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzUxMTAwNDMsImlhdCI6MTc3NDI0NjA0MywiaXNzIjoibmVvYmFzZS1haSIsInVzZXJfaWQiOiI2N2M1ZWY4ZTZmNGU2MmU0ZDBiY2EzY2UifQ.zQyrhtInMAFYoAWLLr5TPf03-0WCqzerWrhPTHpMLYY
+2026/03/23 19:26:30 Redis key not found: blacklist:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzUxMTAwNDMsImlhdCI6MTc3NDI0NjA0MywiaXNzIjoibmVvYmFzZS1haSIsInVzZXJfaWQiOiI2N2M1ZWY4ZTZmNGU2MmU0ZDBiY2EzY2UifQ.zQyrhtInMAFYoAWLLr5TPf03-0WCqzerWrhPTHpMLYY (this is normal for first-time access)
+2026/03/23 19:26:30 User ID from Auth Middleware: 67c5ef8e6f4e62e4d0bca3ce
+2026/03/23 19:26:30 Starting stream for key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo
+2026/03/23 19:26:30 Sending initial connection event for stream key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo
+2026/03/23 19:26:35 VectorDB -> Collection 'neobase_schema' already exists
+2026/03/23 19:26:35 VectorDB -> Ensured payload index 'chat_id' on collection 'neobase_schema'
+2026/03/23 19:26:35 VectorDB -> Ensured payload index 'type' on collection 'neobase_schema'
+2026/03/23 19:26:35 VectorDB -> Ensured payload index 'table_name' on collection 'neobase_schema'
+2026/03/23 19:26:35 VectorDB -> Ensured text index 'content' on collection 'neobase_schema'
+2026/03/23 19:26:35 VectorDB -> Ensured text index 'table_name' on collection 'neobase_schema'
+2026/03/23 19:26:35 VectorDB -> Collection 'neobase_messages' already exists
+2026/03/23 19:26:35 VectorDB -> Ensured payload index 'chat_id' on collection 'neobase_messages'
+2026/03/23 19:26:35 VectorDB -> Ensured payload index 'message_id' on collection 'neobase_messages'
+2026/03/23 19:26:35 VectorDB -> Ensured payload index 'role' on collection 'neobase_messages'
+
+2026/03/23 19:25:01 No $lookup stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:01 No $unwind stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:01 No $project stages found in pipeline, skipping dot notation processing
+2026/03/23 19:25:01 No 'as' fields found in $lookup stages, skipping dot notation processing
+2026/03/23 19:25:01 processObjectIds input: {"$match":{"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}}}
+2026/03/23 19:25:01 processObjectIds input: {"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}}
+2026/03/23 19:25:01 processObjectIds input: {"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> operation: countDocuments
+2026/03/23 19:25:01 processObjectIds input: {"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}
+2026/03/23 19:25:01 processObjectIds input: {"amount":24,"startDate":"$$NOW","unit":"hour"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"amount":24,"startDate":"$$NOW","unit":"hour"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$match":{"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}}}
+2026/03/23 19:25:01 processObjectIds input: {"$count":"usersInLast24Hrs"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$count":"usersInLast24Hrs"}
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> operation: aggregate
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> Extracted aggregation pipeline: [
+  {
+    "$match": {
+      "$expr": {
+        "$gte": ["$createdAt", {"$dateSubtract": {"startDate": "$$NOW", "unit": "day", "amount": 30}}]
+      }
+    }
+  },
+  {
+    "$count": "newUsers"
+  }
+]
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> operation: aggregate
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> Extracted aggregation pipeline: [{"$group": {"_id": "$source", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
+2026/03/23 19:25:01 Processing dot notation fields in aggregation pipeline with 2 stages
+2026/03/23 19:25:01 Processing dot notation fields in aggregation pipeline with 2 stages
+2026/03/23 19:25:01 No $lookup stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:01 No $unwind stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:01 No $project stages found in pipeline, skipping dot notation processing
+2026/03/23 19:25:01 No 'as' fields found in $lookup stages, skipping dot notation processing
+2026/03/23 19:25:01 processObjectIds input: {"$match":{"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}}}
+2026/03/23 19:25:01 processObjectIds input: {"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}}
+2026/03/23 19:25:01 processObjectIds input: {"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}
+2026/03/23 19:25:01 processObjectIds input: {"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}
+2026/03/23 19:25:01 processObjectIds input: {"amount":30,"startDate":"$$NOW","unit":"day"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"amount":30,"startDate":"$$NOW","unit":"day"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$match":{"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}}}
+2026/03/23 19:25:01 processObjectIds input: {"$count":"newUsers"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$count":"newUsers"}
+2026/03/23 19:25:01 No $lookup stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:01 No $unwind stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:01 No $project stages found in pipeline, skipping dot notation processing
+2026/03/23 19:25:01 No 'as' fields found in $lookup stages, skipping dot notation processing
+2026/03/23 19:25:01 processObjectIds input: {"$group":{"_id":"$source","count":{"$sum":1}}}
+2026/03/23 19:25:01 processObjectIds input: {"_id":"$source","count":{"$sum":1}}
+2026/03/23 19:25:01 processObjectIds input: {"$sum":1}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$sum":1}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"_id":"$source","count":{"$sum":1}}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$group":{"_id":"$source","count":{"$sum":1}}}
+2026/03/23 19:25:01 processObjectIds input: {"$sort":{"count":-1}}
+2026/03/23 19:25:01 processObjectIds input: {"count":-1}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"count":-1}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$sort":{"count":-1}}
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> operation: aggregate
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> Extracted aggregation pipeline: [
+  {"$sort": {"createdAt": -1}},
+  {"$limit": 10},
+  {"$addFields": {
+    "resumeProfessionalSummary": "$professionalSummary"
+  }},
+  {"$unwind": {"path": "$workExperience", "preserveNullAndEmptyArrays": true}},
+  {"$sort": {
+    "_id": 1,
+    "workExperience.endDate": -1,
+    "workExperience.startDate": -1
+  }},
+  {"$group": {
+    "_id": "$_id",
+    "createdAt": {"$first": "$createdAt"},
+    "user": {"$first": "$user"},
+    "personalDetails": {"$first": "$personalDetails"},
+    "resumeProfessionalSummary": {"$first": "$resumeProfessionalSummary"},
+    "latestWorkExperience": {"$first": "$workExperience"}
+  }},
+  {"$addFields": {"userObjectId": {"$toObjectId": "$user"}}},
+  {"$lookup": {
+    "from": "users",
+    "localField": "userObjectId",
+    "foreignField": "_id",
+    "as": "userData"
+  }},
+  {"$unwind": {"path": "$userData", "preserveNullAndEmptyArrays": true}},
+  {"$project": {
+    "_id": 0,
+    "resumeCreatedAt": "$createdAt",
+    "userName": "$personalDetails.name",
+    "userSignupDate": "$userData.createdAt",
+    "resumeSummary": "$resumeProfessionalSummary",
+    "latestJobTitle": "$latestWorkExperience.jobTitle",
+    "latestCompanyName": "$latestWorkExperience.companyName"
+  }}
+]
+2026/03/23 19:25:01 Processing dot notation fields in aggregation pipeline with 10 stages
+2026/03/23 19:25:01 Found $unwind stage at position 3
+2026/03/23 19:25:01 Found $lookup stage at position 7
+2026/03/23 19:25:01 Found $lookup 'as' field: userData
+2026/03/23 19:25:01 Found $unwind stage at position 8
+2026/03/23 19:25:01 Found $project stage at position 9
+2026/03/23 19:25:01 Processing 1 $project stages after $lookup and $unwind
+2026/03/23 19:25:01 Processed 0 dot notation fields in $project stage 9
+2026/03/23 19:25:01 processObjectIds input: {"$sort":{"createdAt":-1}}
+2026/03/23 19:25:01 processObjectIds input: {"createdAt":-1}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"createdAt":-1}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$sort":{"createdAt":-1}}
+2026/03/23 19:25:01 processObjectIds input: {"$limit":10}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$limit":10}
+2026/03/23 19:25:01 processObjectIds input: {"$addFields":{"resumeProfessionalSummary":"$professionalSummary"}}
+2026/03/23 19:25:01 processObjectIds input: {"resumeProfessionalSummary":"$professionalSummary"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"resumeProfessionalSummary":"$professionalSummary"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$addFields":{"resumeProfessionalSummary":"$professionalSummary"}}
+2026/03/23 19:25:01 processObjectIds input: {"$unwind":{"path":"$workExperience","preserveNullAndEmptyArrays":true}}
+2026/03/23 19:25:01 processObjectIds input: {"path":"$workExperience","preserveNullAndEmptyArrays":true}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"path":"$workExperience","preserveNullAndEmptyArrays":true}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$unwind":{"path":"$workExperience","preserveNullAndEmptyArrays":true}}
+2026/03/23 19:25:01 processObjectIds input: {"$sort":{"_id":1,"workExperience.endDate":-1,"workExperience.startDate":-1}}
+2026/03/23 19:25:01 processObjectIds input: {"_id":1,"workExperience.endDate":-1,"workExperience.startDate":-1}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"_id":1,"workExperience.endDate":-1,"workExperience.startDate":-1}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$sort":{"_id":1,"workExperience.endDate":-1,"workExperience.startDate":-1}}
+2026/03/23 19:25:01 processObjectIds input: {"$group":{"_id":"$_id","createdAt":{"$first":"$createdAt"},"latestWorkExperience":{"$first":"$workExperience"},"personalDetails":{"$first":"$personalDetails"},"resumeProfessionalSummary":{"$first":"$resumeProfessionalSummary"},"user":{"$first":"$user"}}}
+2026/03/23 19:25:01 processObjectIds input: {"_id":"$_id","createdAt":{"$first":"$createdAt"},"latestWorkExperience":{"$first":"$workExperience"},"personalDetails":{"$first":"$personalDetails"},"resumeProfessionalSummary":{"$first":"$resumeProfessionalSummary"},"user":{"$first":"$user"}}
+2026/03/23 19:25:01 processObjectIds input: {"$first":"$createdAt"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$first":"$createdAt"}
+2026/03/23 19:25:01 processObjectIds input: {"$first":"$user"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$first":"$user"}
+2026/03/23 19:25:01 processObjectIds input: {"$first":"$personalDetails"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$first":"$personalDetails"}
+2026/03/23 19:25:01 processObjectIds input: {"$first":"$resumeProfessionalSummary"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$first":"$resumeProfessionalSummary"}
+2026/03/23 19:25:01 processObjectIds input: {"$first":"$workExperience"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$first":"$workExperience"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"_id":"$_id","createdAt":{"$first":"$createdAt"},"latestWorkExperience":{"$first":"$workExperience"},"personalDetails":{"$first":"$personalDetails"},"resumeProfessionalSummary":{"$first":"$resumeProfessionalSummary"},"user":{"$first":"$user"}}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$group":{"_id":"$_id","createdAt":{"$first":"$createdAt"},"latestWorkExperience":{"$first":"$workExperience"},"personalDetails":{"$first":"$personalDetails"},"resumeProfessionalSummary":{"$first":"$resumeProfessionalSummary"},"user":{"$first":"$user"}}}
+2026/03/23 19:25:01 processObjectIds input: {"$addFields":{"userObjectId":{"$toObjectId":"$user"}}}
+2026/03/23 19:25:01 processObjectIds input: {"userObjectId":{"$toObjectId":"$user"}}
+2026/03/23 19:25:01 processObjectIds input: {"$toObjectId":"$user"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$toObjectId":"$user"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"userObjectId":{"$toObjectId":"$user"}}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$addFields":{"userObjectId":{"$toObjectId":"$user"}}}
+2026/03/23 19:25:01 processObjectIds input: {"$lookup":{"as":"userData","foreignField":"_id","from":"users","localField":"userObjectId"}}
+2026/03/23 19:25:01 processObjectIds input: {"as":"userData","foreignField":"_id","from":"users","localField":"userObjectId"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"as":"userData","foreignField":"_id","from":"users","localField":"userObjectId"}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$lookup":{"as":"userData","foreignField":"_id","from":"users","localField":"userObjectId"}}
+2026/03/23 19:25:01 processObjectIds input: {"$unwind":{"path":"$userData","preserveNullAndEmptyArrays":true}}
+2026/03/23 19:25:01 processObjectIds input: {"path":"$userData","preserveNullAndEmptyArrays":true}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"path":"$userData","preserveNullAndEmptyArrays":true}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$unwind":{"path":"$userData","preserveNullAndEmptyArrays":true}}
+2026/03/23 19:25:01 processObjectIds input: {"$project":{"_id":0,"latestCompanyName":"$latestWorkExperience.companyName","latestJobTitle":"$latestWorkExperience.jobTitle","resumeCreatedAt":"$createdAt","resumeSummary":"$resumeProfessionalSummary","userName":"$personalDetails.name","userSignupDate":"$userData.createdAt"}}
+2026/03/23 19:25:01 processObjectIds output (after ObjectId and Date conversion): {"$project":{"_id":0,"latestCompanyName":"$latestWorkExperience.companyName","latestJobTitle":"$latestWorkExperience.jobTitle","resumeCreatedAt":"$createdAt","resumeSummary":"$resumeProfessionalSummary","userName":"$personalDetails.name","userSignupDate":"$userData.createdAt"}}
+2026/03/23 19:25:01 processAggregationResultsFromCursor -> Decoded 1 results from aggregation
+2026/03/23 19:25:01 First aggregation result: {"usersInLast24Hrs":4}
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 107 ms
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:01 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> operation: find
+2026/03/23 19:25:01 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> Split parameters into filter: {} and projection: {name: 1, email: 1, createdAt: 1, source: 1, "careerIntent.intents": 1, "idealCompanyProfile.role": 1, "idealCompanyProfile.companyType": 1, "idealCompanyProfile.salary": 1}
+2026/03/23 19:25:01 Original MongoDB projection params: {name: 1, email: 1, createdAt: 1, source: 1, "careerIntent.intents": 1, "idealCompanyProfile.role": 1, "idealCompanyProfile.companyType": 1, "idealCompanyProfile.salary": 1} (isAggregation: false)
+2026/03/23 19:25:01 Processed MongoDB projection params: {"name": 1, "email": 1, "createdAt": 1, "source": 1, "careerIntent.intents": 1, "idealCompanyProfile.role": 1, "idealCompanyProfile.companyType": 1, "idealCompanyProfile.salary": 1}
+2026/03/23 19:25:01 extractModifiers -> Raw sort expression: {createdAt: -1}
+2026/03/23 19:25:01 extractModifiers -> Extracted sort expression: {createdAt: -1}
+2026/03/23 19:25:01 Original MongoDB query params: {createdAt: -1}
+2026/03/23 19:25:01 After ObjectId and Date replacement: {"createdAt": -1}
+2026/03/23 19:25:01 Final processed MongoDB query params: {"createdAt": -1}
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 155 ms
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:01 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 processAggregationResultsFromCursor -> Decoded 12 results from aggregation
+2026/03/23 19:25:01 First aggregation result: {"_id":null,"count":356}
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 124 ms
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:01 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 processAggregationResultsFromCursor -> Decoded 1 results from aggregation
+2026/03/23 19:25:01 First aggregation result: {"newUsers":151}
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 156 ms
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:01 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:01 processAggregationResultsFromCursor -> Decoded 10 results from aggregation
+2026/03/23 19:25:01 First aggregation result: {"latestCompanyName":"Bharat Electronics Limited","latestJobTitle":"Trainee Engineer Software Development","resumeCreatedAt":"2026-03-21T07:23:22.587Z","resumeSummary":"Front End Developer with experience in building **responsive** and **scalable web applications** across healthcare, HR, and communication systems. Strong expertise in **React JS**, **Next JS**, **JavaScript**, **HTML5**, and **CSS3**. Experienced in developing **reusable UI components**, **real-time dashboards**, and **REST API integrations**. Focused on **performance optimization**, **clean design**, and delivering **intuitive user experiences**.","userName":"MEDAPATI JESLINA SONALI"}
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 125 ms
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:01 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 processAggregationResultsFromCursor -> Decoded 10 results from aggregation
+2026/03/23 19:25:01 First aggregation result: {"_id":"69c133165badaa078a80693f","createdAt":"2026-03-23T12:33:26.364Z","email":"vrsalekya@gmail.com","name":"Alekhya Vedantam","source":"AI Chat Apps (ChatGPT, Perplexity, etc.)"}
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 161 ms
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:01 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 processAggregationResultsFromCursor -> Decoded 235 results from aggregation
+2026/03/23 19:25:01 First aggregation result: {"_id":"2025-05-24","count":2}
+2026/03/23 19:25:01 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 193 ms
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:01 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:01 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:01 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:01 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+[GIN] 2026/03/23 - 19:25:01 | 200 |  425.957541ms |             ::1 | POST     "/api/chats/680cb77f0386e114117ce51e/dashboards/69a855fab6cdda26e0533099/refresh?stream_id=mn38zka2-peq4lo"
+2026/03/23 19:25:01 [CACHE UPDATE] Updating chat cache - ChatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:01 [REDIS WRITE] Storing compressed data - Key: chat:id:680cb77f0386e114117ce51e, Original: 161010 bytes, Compressed: 44348 bytes, Saved: 72.46%, TTL: 30m0s
+2026/03/23 19:25:01 [CACHE WRITE SUCCESS] Cached chat - Key: chat:id:680cb77f0386e114117ce51e
+2026/03/23 19:25:03 SchemaStorageService -> Retrieve -> Retrieving schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:03 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:03 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:03 Successfully got Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:03 SchemaStorageService -> Retrieve -> Successfully retrieved schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:05 Getting Redis key: blacklist:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzUxMTAwNDMsImlhdCI6MTc3NDI0NjA0MywiaXNzIjoibmVvYmFzZS1haSIsInVzZXJfaWQiOiI2N2M1ZWY4ZTZmNGU2MmU0ZDBiY2EzY2UifQ.zQyrhtInMAFYoAWLLr5TPf03-0WCqzerWrhPTHpMLYY
+2026/03/23 19:25:05 Redis key not found: blacklist:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzUxMTAwNDMsImlhdCI6MTc3NDI0NjA0MywiaXNzIjoibmVvYmFzZS1haSIsInVzZXJfaWQiOiI2N2M1ZWY4ZTZmNGU2MmU0ZDBiY2EzY2UifQ.zQyrhtInMAFYoAWLLr5TPf03-0WCqzerWrhPTHpMLYY (this is normal for first-time access)
+2026/03/23 19:25:05 User ID from Auth Middleware: 67c5ef8e6f4e62e4d0bca3ce
+2026/03/23 19:25:05 RefreshDashboard called - userID: 67c5ef8e6f4e62e4d0bca3ce, chatID: 680cb77f0386e114117ce51e, dashboardID: 69a855fab6cdda26e0533099, streamID: mn38zka2-peq4lo
+2026/03/23 19:25:06 RefreshDashboard -> DB connection check: true
+2026/03/23 19:25:06 RefreshDashboard -> SSE stream check: streamHandler=true, hasStream=true
+2026/03/23 19:25:06 [REDIS READ] Retrieving compressed data - Key: dashboard:id:69a855fab6cdda26e0533099
+2026/03/23 19:25:06 [REDIS READ SUCCESS] Decompressed data - Key: dashboard:id:69a855fab6cdda26e0533099, Compressed: 596 bytes, Decompressed: 890 bytes, Expansion: 1.49x
+2026/03/23 19:25:06 [CACHE HIT] Dashboard found in cache - ID: 69a855fab6cdda26e0533099
+2026/03/23 19:25:06 [REDIS READ] Retrieving compressed data - Key: dashboard:widgets:69a855fab6cdda26e0533099
+2026/03/23 19:25:06 [REDIS READ SUCCESS] Decompressed data - Key: dashboard:widgets:69a855fab6cdda26e0533099, Compressed: 2640 bytes, Decompressed: 7552 bytes, Expansion: 2.86x
+2026/03/23 19:25:06 [CACHE HIT] Widgets found in cache - DashboardID: 69a855fab6cdda26e0533099
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Driver: &{}
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Retrieving schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Driver: &{}
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Retrieving schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Driver: &{}
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Retrieving schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Driver: &{}
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Retrieving schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Driver: &{}
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Retrieving schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Driver: &{}
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Retrieving schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Driver: &{}
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Retrieving schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Getting Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Successfully got Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Successfully got Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Successfully got Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Successfully got Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Successfully got Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Successfully got Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Successfully got Redis key: schema:680cb77f0386e114117ce51e
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Successfully retrieved schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Using cached schema with 21 tables for validation
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query passed safety validation
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> Beginning MongoDB transaction
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Successfully retrieved schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Using cached schema with 21 tables for validation
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query passed safety validation
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> Beginning MongoDB transaction
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Successfully retrieved schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Using cached schema with 21 tables for validation
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query passed safety validation
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> Beginning MongoDB transaction
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Successfully retrieved schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Using cached schema with 21 tables for validation
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query passed safety validation
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> Beginning MongoDB transaction
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Successfully retrieved schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Using cached schema with 21 tables for validation
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query passed safety validation
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> Beginning MongoDB transaction
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Successfully retrieved schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Using cached schema with 21 tables for validation
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query passed safety validation
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> Beginning MongoDB transaction
+2026/03/23 19:25:06 SchemaStorageService -> Retrieve -> Successfully retrieved schema for chatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Using cached schema with 21 tables for validation
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query passed safety validation
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> Beginning MongoDB transaction
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> MongoDB transaction started successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Executing query: db.resumes.aggregate([
+  {"$sort": {"createdAt": -1}},
+  {"$limit": 10},
+  {"$addFields": {
+    "resumeProfessionalSummary": "$professionalSummary"
+  }},
+  {"$unwind": {"path": "$workExperience", "preserveNullAndEmptyArrays": true}},
+  {"$sort": {
+    "_id": 1,
+    "workExperience.endDate": -1,
+    "workExperience.startDate": -1
+  }},
+  {"$group": {
+    "_id": "$_id",
+    "createdAt": {"$first": "$createdAt"},
+    "user": {"$first": "$user"},
+    "personalDetails": {"$first": "$personalDetails"},
+    "resumeProfessionalSummary": {"$first": "$resumeProfessionalSummary"},
+    "latestWorkExperience": {"$first": "$workExperience"}
+  }},
+  {"$addFields": {"userObjectId": {"$toObjectId": "$user"}}},
+  {"$lookup": {
+    "from": "users",
+    "localField": "userObjectId",
+    "foreignField": "_id",
+    "as": "userData"
+  }},
+  {"$unwind": {"path": "$userData", "preserveNullAndEmptyArrays": true}},
+  {"$project": {
+    "_id": 0,
+    "resumeCreatedAt": "$createdAt",
+    "userName": "$personalDetails.name",
+    "userSignupDate": "$userData.createdAt",
+    "resumeSummary": "$resumeProfessionalSummary",
+    "latestJobTitle": "$latestWorkExperience.jobTitle",
+    "latestCompanyName": "$latestWorkExperience.companyName"
+  }}
+])
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Executing MongoDB query in transaction: db.resumes.aggregate([
+  {"$sort": {"createdAt": -1}},
+  {"$limit": 10},
+  {"$addFields": {
+    "resumeProfessionalSummary": "$professionalSummary"
+  }},
+  {"$unwind": {"path": "$workExperience", "preserveNullAndEmptyArrays": true}},
+  {"$sort": {
+    "_id": 1,
+    "workExperience.endDate": -1,
+    "workExperience.startDate": -1
+  }},
+  {"$group": {
+    "_id": "$_id",
+    "createdAt": {"$first": "$createdAt"},
+    "user": {"$first": "$user"},
+    "personalDetails": {"$first": "$personalDetails"},
+    "resumeProfessionalSummary": {"$first": "$resumeProfessionalSummary"},
+    "latestWorkExperience": {"$first": "$workExperience"}
+  }},
+  {"$addFields": {"userObjectId": {"$toObjectId": "$user"}}},
+  {"$lookup": {
+    "from": "users",
+    "localField": "userObjectId",
+    "foreignField": "_id",
+    "as": "userData"
+  }},
+  {"$unwind": {"path": "$userData", "preserveNullAndEmptyArrays": true}},
+  {"$project": {
+    "_id": 0,
+    "resumeCreatedAt": "$createdAt",
+    "userName": "$personalDetails.name",
+    "userSignupDate": "$userData.createdAt",
+    "resumeSummary": "$resumeProfessionalSummary",
+    "latestJobTitle": "$latestWorkExperience.jobTitle",
+    "latestCompanyName": "$latestWorkExperience.companyName"
+  }}
+])
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted operation: aggregate, params: [
+  {"$sort": {"createdAt": -1}},
+  {"$limit": 10},
+  {"$addFields": {
+    "resumeProfessionalSummary": "$professionalSummary"
+  }},
+  {"$unwind": {"path": "$workExperience", "preserveNullAndEmptyArrays": true}},
+  {"$sort": {
+    "_id": 1,
+    "workExperience.endDate": -1,
+    "workExperience.startDate": -1
+  }},
+  {"$group": {
+    "_id": "$_id",
+    "createdAt": {"$first": "$createdAt"},
+    "user": {"$first": "$user"},
+    "personalDetails": {"$first": "$personalDetails"},
+    "resumeProfessionalSummary": {"$first": "$resumeProfessionalSummary"},
+    "latestWorkExperience": {"$first": "$workExperience"}
+  }},
+  {"$addFields": {"userObjectId": {"$toObjectId": "$user"}}},
+  {"$lookup": {
+    "from": "users",
+    "localField": "userObjectId",
+    "foreignField": "_id",
+    "as": "userData"
+  }},
+  {"$unwind": {"path": "$userData", "preserveNullAndEmptyArrays": true}},
+  {"$project": {
+    "_id": 0,
+    "resumeCreatedAt": "$createdAt",
+    "userName": "$personalDetails.name",
+    "userSignupDate": "$userData.createdAt",
+    "resumeSummary": "$resumeProfessionalSummary",
+    "latestJobTitle": "$latestWorkExperience.jobTitle",
+    "latestCompanyName": "$latestWorkExperience.companyName"
+  }}
+]
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> MongoDB transaction started successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Executing query: db.users.aggregate([
+  {
+    "$match": {
+      "$expr": {
+        "$gte": ["$createdAt", {"$dateSubtract": {"startDate": "$$NOW", "unit": "day", "amount": 30}}]
+      }
+    }
+  },
+  {
+    "$count": "newUsers"
+  }
+])
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Executing MongoDB query in transaction: db.users.aggregate([
+  {
+    "$match": {
+      "$expr": {
+        "$gte": ["$createdAt", {"$dateSubtract": {"startDate": "$$NOW", "unit": "day", "amount": 30}}]
+      }
+    }
+  },
+  {
+    "$count": "newUsers"
+  }
+])
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> MongoDB transaction started successfully
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted operation: aggregate, params: [
+  {
+    "$match": {
+      "$expr": {
+        "$gte": ["$createdAt", {"$dateSubtract": {"startDate": "$$NOW", "unit": "day", "amount": 30}}]
+      }
+    }
+  },
+  {
+    "$count": "newUsers"
+  }
+]
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Executing query: db.users.aggregate([{"$group": {"_id": {"$dateToString": {"format": "%Y-%m-%d", "date": "$createdAt"}}, "count": {"$sum": 1}}}, {"$sort": {"_id": 1}}])
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Executing MongoDB query in transaction: db.users.aggregate([{"$group": {"_id": {"$dateToString": {"format": "%Y-%m-%d", "date": "$createdAt"}}, "count": {"$sum": 1}}}, {"$sort": {"_id": 1}}])
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted operation: aggregate, params: [{"$group": {"_id": {"$dateToString": {"format": "%Y-%m-%d", "date": "$createdAt"}}, "count": {"$sum": 1}}}, {"$sort": {"_id": 1}}]
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> MongoDB transaction started successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Executing query: db.users.aggregate([{"$match": {"$expr": {"$gte": ["$createdAt", {"$dateSubtract": {"startDate": "$$NOW", "unit": "hour", "amount": 24}}]}}}, {"$count": "usersInLast24Hrs"}])
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Executing MongoDB query in transaction: db.users.aggregate([{"$match": {"$expr": {"$gte": ["$createdAt", {"$dateSubtract": {"startDate": "$$NOW", "unit": "hour", "amount": 24}}]}}}, {"$count": "usersInLast24Hrs"}])
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted operation: aggregate, params: [{"$match": {"$expr": {"$gte": ["$createdAt", {"$dateSubtract": {"startDate": "$$NOW", "unit": "hour", "amount": 24}}]}}}, {"$count": "usersInLast24Hrs"}]
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> MongoDB transaction started successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Executing query: db.users.find({}, {name: 1, email: 1, createdAt: 1, source: 1, "careerIntent.intents": 1, "idealCompanyProfile.role": 1, "idealCompanyProfile.companyType": 1, "idealCompanyProfile.salary": 1}).sort({createdAt: -1}).limit(10)
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Executing MongoDB query in transaction: db.users.find({}, {name: 1, email: 1, createdAt: 1, source: 1, "careerIntent.intents": 1, "idealCompanyProfile.role": 1, "idealCompanyProfile.companyType": 1, "idealCompanyProfile.salary": 1}).sort({createdAt: -1}).limit(10)
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted operation: find, params: {}, {name: 1, email: 1, createdAt: 1, source: 1, "careerIntent.intents": 1, "idealCompanyProfile.role": 1, "idealCompanyProfile.companyType": 1, "idealCompanyProfile.salary": 1}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Modifiers string: .sort({createdAt: -1}).limit(10)
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Found limit modifier: 10
+2026/03/23 19:25:06 Processing sort expression: {createdAt: -1}
+2026/03/23 19:25:06 Original MongoDB query params: {"createdAt": -1}
+2026/03/23 19:25:06 After ObjectId and Date replacement: {"createdAt": -1}
+2026/03/23 19:25:06 Final processed MongoDB query params: {"createdAt": -1}
+2026/03/23 19:25:06 Processed sort expression to: {"createdAt": -1}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Processed sort modifier: {"createdAt": -1}
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> MongoDB transaction started successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Executing query: db.users.countDocuments({})
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Executing MongoDB query in transaction: db.users.countDocuments({})
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted operation: countDocuments, params: {}
+2026/03/23 19:25:06 MongoDBDriver -> BeginTx -> MongoDB transaction started successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Executing query: db.users.aggregate([{"$group": {"_id": "$source", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}])
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Executing MongoDB query in transaction: db.users.aggregate([{"$group": {"_id": "$source", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}])
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted operation: aggregate, params: [{"$group": {"_id": "$source", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> operation: aggregate
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted aggregation pipeline: [
+  {
+    "$match": {
+      "$expr": {
+        "$gte": ["$createdAt", {"$dateSubtract": {"startDate": "$$NOW", "unit": "day", "amount": 30}}]
+      }
+    }
+  },
+  {
+    "$count": "newUsers"
+  }
+]
+2026/03/23 19:25:06 Processing dot notation fields in aggregation pipeline with 2 stages
+2026/03/23 19:25:06 No $lookup stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No $unwind stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No $project stages found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No 'as' fields found in $lookup stages, skipping dot notation processing
+2026/03/23 19:25:06 processObjectIds input: {"$match":{"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}}}
+2026/03/23 19:25:06 processObjectIds input: {"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}}
+2026/03/23 19:25:06 processObjectIds input: {"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}
+2026/03/23 19:25:06 processObjectIds input: {"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}
+2026/03/23 19:25:06 processObjectIds input: {"amount":30,"startDate":"$$NOW","unit":"day"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"amount":30,"startDate":"$$NOW","unit":"day"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$match":{"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":30,"startDate":"$$NOW","unit":"day"}}]}}}
+2026/03/23 19:25:06 processObjectIds input: {"$count":"newUsers"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$count":"newUsers"}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> operation: aggregate
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted aggregation pipeline: [
+  {"$sort": {"createdAt": -1}},
+  {"$limit": 10},
+  {"$addFields": {
+    "resumeProfessionalSummary": "$professionalSummary"
+  }},
+  {"$unwind": {"path": "$workExperience", "preserveNullAndEmptyArrays": true}},
+  {"$sort": {
+    "_id": 1,
+    "workExperience.endDate": -1,
+    "workExperience.startDate": -1
+  }},
+  {"$group": {
+    "_id": "$_id",
+    "createdAt": {"$first": "$createdAt"},
+    "user": {"$first": "$user"},
+    "personalDetails": {"$first": "$personalDetails"},
+    "resumeProfessionalSummary": {"$first": "$resumeProfessionalSummary"},
+    "latestWorkExperience": {"$first": "$workExperience"}
+  }},
+  {"$addFields": {"userObjectId": {"$toObjectId": "$user"}}},
+  {"$lookup": {
+    "from": "users",
+    "localField": "userObjectId",
+    "foreignField": "_id",
+    "as": "userData"
+  }},
+  {"$unwind": {"path": "$userData", "preserveNullAndEmptyArrays": true}},
+  {"$project": {
+    "_id": 0,
+    "resumeCreatedAt": "$createdAt",
+    "userName": "$personalDetails.name",
+    "userSignupDate": "$userData.createdAt",
+    "resumeSummary": "$resumeProfessionalSummary",
+    "latestJobTitle": "$latestWorkExperience.jobTitle",
+    "latestCompanyName": "$latestWorkExperience.companyName"
+  }}
+]
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> operation: aggregate
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted aggregation pipeline: [{"$group": {"_id": {"$dateToString": {"format": "%Y-%m-%d", "date": "$createdAt"}}, "count": {"$sum": 1}}}, {"$sort": {"_id": 1}}]
+2026/03/23 19:25:06 Processing dot notation fields in aggregation pipeline with 10 stages
+2026/03/23 19:25:06 Found $unwind stage at position 3
+2026/03/23 19:25:06 Found $lookup stage at position 7
+2026/03/23 19:25:06 Found $lookup 'as' field: userData
+2026/03/23 19:25:06 Found $unwind stage at position 8
+2026/03/23 19:25:06 Found $project stage at position 9
+2026/03/23 19:25:06 Processing 1 $project stages after $lookup and $unwind
+2026/03/23 19:25:06 Processed 0 dot notation fields in $project stage 9
+2026/03/23 19:25:06 processObjectIds input: {"$sort":{"createdAt":-1}}
+2026/03/23 19:25:06 processObjectIds input: {"createdAt":-1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"createdAt":-1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$sort":{"createdAt":-1}}
+2026/03/23 19:25:06 processObjectIds input: {"$limit":10}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$limit":10}
+2026/03/23 19:25:06 Processing dot notation fields in aggregation pipeline with 2 stages
+2026/03/23 19:25:06 processObjectIds input: {"$addFields":{"resumeProfessionalSummary":"$professionalSummary"}}
+2026/03/23 19:25:06 processObjectIds input: {"resumeProfessionalSummary":"$professionalSummary"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"resumeProfessionalSummary":"$professionalSummary"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$addFields":{"resumeProfessionalSummary":"$professionalSummary"}}
+2026/03/23 19:25:06 processObjectIds input: {"$unwind":{"path":"$workExperience","preserveNullAndEmptyArrays":true}}
+2026/03/23 19:25:06 processObjectIds input: {"path":"$workExperience","preserveNullAndEmptyArrays":true}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"path":"$workExperience","preserveNullAndEmptyArrays":true}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$unwind":{"path":"$workExperience","preserveNullAndEmptyArrays":true}}
+2026/03/23 19:25:06 No $lookup stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No $unwind stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No $project stages found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No 'as' fields found in $lookup stages, skipping dot notation processing
+2026/03/23 19:25:06 processObjectIds input: {"$group":{"_id":{"$dateToString":{"date":"$createdAt","format":"%Y-%m-%d"}},"count":{"$sum":1}}}
+2026/03/23 19:25:06 processObjectIds input: {"$sort":{"_id":1,"workExperience.endDate":-1,"workExperience.startDate":-1}}
+2026/03/23 19:25:06 processObjectIds input: {"_id":{"$dateToString":{"date":"$createdAt","format":"%Y-%m-%d"}},"count":{"$sum":1}}
+2026/03/23 19:25:06 processObjectIds input: {"_id":1,"workExperience.endDate":-1,"workExperience.startDate":-1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"_id":1,"workExperience.endDate":-1,"workExperience.startDate":-1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$sort":{"_id":1,"workExperience.endDate":-1,"workExperience.startDate":-1}}
+2026/03/23 19:25:06 processObjectIds input: {"$dateToString":{"date":"$createdAt","format":"%Y-%m-%d"}}
+2026/03/23 19:25:06 processObjectIds input: {"date":"$createdAt","format":"%Y-%m-%d"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"date":"$createdAt","format":"%Y-%m-%d"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$dateToString":{"date":"$createdAt","format":"%Y-%m-%d"}}
+2026/03/23 19:25:06 processObjectIds input: {"$sum":1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$sum":1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"_id":{"$dateToString":{"date":"$createdAt","format":"%Y-%m-%d"}},"count":{"$sum":1}}
+2026/03/23 19:25:06 processObjectIds input: {"$group":{"_id":"$_id","createdAt":{"$first":"$createdAt"},"latestWorkExperience":{"$first":"$workExperience"},"personalDetails":{"$first":"$personalDetails"},"resumeProfessionalSummary":{"$first":"$resumeProfessionalSummary"},"user":{"$first":"$user"}}}
+2026/03/23 19:25:06 processObjectIds input: {"_id":"$_id","createdAt":{"$first":"$createdAt"},"latestWorkExperience":{"$first":"$workExperience"},"personalDetails":{"$first":"$personalDetails"},"resumeProfessionalSummary":{"$first":"$resumeProfessionalSummary"},"user":{"$first":"$user"}}
+2026/03/23 19:25:06 processObjectIds input: {"$first":"$workExperience"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$first":"$workExperience"}
+2026/03/23 19:25:06 processObjectIds input: {"$first":"$createdAt"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$first":"$createdAt"}
+2026/03/23 19:25:06 processObjectIds input: {"$first":"$user"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$first":"$user"}
+2026/03/23 19:25:06 processObjectIds input: {"$first":"$personalDetails"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$first":"$personalDetails"}
+2026/03/23 19:25:06 processObjectIds input: {"$first":"$resumeProfessionalSummary"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$first":"$resumeProfessionalSummary"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"_id":"$_id","createdAt":{"$first":"$createdAt"},"latestWorkExperience":{"$first":"$workExperience"},"personalDetails":{"$first":"$personalDetails"},"resumeProfessionalSummary":{"$first":"$resumeProfessionalSummary"},"user":{"$first":"$user"}}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$group":{"_id":"$_id","createdAt":{"$first":"$createdAt"},"latestWorkExperience":{"$first":"$workExperience"},"personalDetails":{"$first":"$personalDetails"},"resumeProfessionalSummary":{"$first":"$resumeProfessionalSummary"},"user":{"$first":"$user"}}}
+2026/03/23 19:25:06 processObjectIds input: {"$addFields":{"userObjectId":{"$toObjectId":"$user"}}}
+2026/03/23 19:25:06 processObjectIds input: {"userObjectId":{"$toObjectId":"$user"}}
+2026/03/23 19:25:06 processObjectIds input: {"$toObjectId":"$user"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$toObjectId":"$user"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"userObjectId":{"$toObjectId":"$user"}}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$addFields":{"userObjectId":{"$toObjectId":"$user"}}}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$group":{"_id":{"$dateToString":{"date":"$createdAt","format":"%Y-%m-%d"}},"count":{"$sum":1}}}
+2026/03/23 19:25:06 processObjectIds input: {"$sort":{"_id":1}}
+2026/03/23 19:25:06 processObjectIds input: {"_id":1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"_id":1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$sort":{"_id":1}}
+2026/03/23 19:25:06 processObjectIds input: {"$lookup":{"as":"userData","foreignField":"_id","from":"users","localField":"userObjectId"}}
+2026/03/23 19:25:06 processObjectIds input: {"as":"userData","foreignField":"_id","from":"users","localField":"userObjectId"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"as":"userData","foreignField":"_id","from":"users","localField":"userObjectId"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$lookup":{"as":"userData","foreignField":"_id","from":"users","localField":"userObjectId"}}
+2026/03/23 19:25:06 processObjectIds input: {"$unwind":{"path":"$userData","preserveNullAndEmptyArrays":true}}
+2026/03/23 19:25:06 processObjectIds input: {"path":"$userData","preserveNullAndEmptyArrays":true}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"path":"$userData","preserveNullAndEmptyArrays":true}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$unwind":{"path":"$userData","preserveNullAndEmptyArrays":true}}
+2026/03/23 19:25:06 processObjectIds input: {"$project":{"_id":0,"latestCompanyName":"$latestWorkExperience.companyName","latestJobTitle":"$latestWorkExperience.jobTitle","resumeCreatedAt":"$createdAt","resumeSummary":"$resumeProfessionalSummary","userName":"$personalDetails.name","userSignupDate":"$userData.createdAt"}}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$project":{"_id":0,"latestCompanyName":"$latestWorkExperience.companyName","latestJobTitle":"$latestWorkExperience.jobTitle","resumeCreatedAt":"$createdAt","resumeSummary":"$resumeProfessionalSummary","userName":"$personalDetails.name","userSignupDate":"$userData.createdAt"}}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> operation: aggregate
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted aggregation pipeline: [{"$match": {"$expr": {"$gte": ["$createdAt", {"$dateSubtract": {"startDate": "$$NOW", "unit": "hour", "amount": 24}}]}}}, {"$count": "usersInLast24Hrs"}]
+2026/03/23 19:25:06 Processing dot notation fields in aggregation pipeline with 2 stages
+2026/03/23 19:25:06 No $lookup stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No $unwind stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No $project stages found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No 'as' fields found in $lookup stages, skipping dot notation processing
+2026/03/23 19:25:06 processObjectIds input: {"$match":{"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}}}
+2026/03/23 19:25:06 processObjectIds input: {"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}}
+2026/03/23 19:25:06 processObjectIds input: {"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}
+2026/03/23 19:25:06 processObjectIds input: {"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}
+2026/03/23 19:25:06 processObjectIds input: {"amount":24,"startDate":"$$NOW","unit":"hour"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"amount":24,"startDate":"$$NOW","unit":"hour"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$match":{"$expr":{"$gte":["$createdAt",{"$dateSubtract":{"amount":24,"startDate":"$$NOW","unit":"hour"}}]}}}
+2026/03/23 19:25:06 processObjectIds input: {"$count":"usersInLast24Hrs"}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$count":"usersInLast24Hrs"}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> operation: find
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Split parameters into filter: {} and projection: {name: 1, email: 1, createdAt: 1, source: 1, "careerIntent.intents": 1, "idealCompanyProfile.role": 1, "idealCompanyProfile.companyType": 1, "idealCompanyProfile.salary": 1}
+2026/03/23 19:25:06 Original MongoDB projection params: {name: 1, email: 1, createdAt: 1, source: 1, "careerIntent.intents": 1, "idealCompanyProfile.role": 1, "idealCompanyProfile.companyType": 1, "idealCompanyProfile.salary": 1} (isAggregation: false)
+2026/03/23 19:25:06 Processed MongoDB projection params: {"name": 1, "email": 1, "createdAt": 1, "source": 1, "careerIntent.intents": 1, "idealCompanyProfile.role": 1, "idealCompanyProfile.companyType": 1, "idealCompanyProfile.salary": 1}
+2026/03/23 19:25:06 extractModifiers -> Raw sort expression: {createdAt: -1}
+2026/03/23 19:25:06 extractModifiers -> Extracted sort expression: {createdAt: -1}
+2026/03/23 19:25:06 Original MongoDB query params: {createdAt: -1}
+2026/03/23 19:25:06 After ObjectId and Date replacement: {"createdAt": -1}
+2026/03/23 19:25:06 Final processed MongoDB query params: {"createdAt": -1}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> operation: countDocuments
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> operation: aggregate
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> Extracted aggregation pipeline: [{"$group": {"_id": "$source", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}]
+2026/03/23 19:25:06 Processing dot notation fields in aggregation pipeline with 2 stages
+2026/03/23 19:25:06 No $lookup stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No $unwind stage found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No $project stages found in pipeline, skipping dot notation processing
+2026/03/23 19:25:06 No 'as' fields found in $lookup stages, skipping dot notation processing
+2026/03/23 19:25:06 processObjectIds input: {"$group":{"_id":"$source","count":{"$sum":1}}}
+2026/03/23 19:25:06 processObjectIds input: {"_id":"$source","count":{"$sum":1}}
+2026/03/23 19:25:06 processObjectIds input: {"$sum":1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$sum":1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"_id":"$source","count":{"$sum":1}}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$group":{"_id":"$source","count":{"$sum":1}}}
+2026/03/23 19:25:06 processObjectIds input: {"$sort":{"count":-1}}
+2026/03/23 19:25:06 processObjectIds input: {"count":-1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"count":-1}
+2026/03/23 19:25:06 processObjectIds output (after ObjectId and Date conversion): {"$sort":{"count":-1}}
+2026/03/23 19:25:06 processAggregationResultsFromCursor -> Decoded 1 results from aggregation
+2026/03/23 19:25:06 First aggregation result: {"newUsers":151}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 72 ms
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:06 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:06 processAggregationResultsFromCursor -> Decoded 1 results from aggregation
+2026/03/23 19:25:06 processAggregationResultsFromCursor -> Decoded 10 results from aggregation
+2026/03/23 19:25:06 First aggregation result: {"usersInLast24Hrs":4}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 75 ms
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:06 First aggregation result: {"latestCompanyName":"Zensar Technologies","latestJobTitle":"Data Scientist","resumeCreatedAt":"2026-03-22T14:48:46.45Z","resumeSummary":"Data Scientist with more than 2 years of industry experience applying machine learning and advanced analytics across Electric Vehicle (EV) and Healthcare domains. Skilled in data preprocessing, exploratory data analysis, feature engineering, and predictive modeling using Python. Experienced in building end-to-end data-driven solutions, focusing on model reliability, recall, and real-world impact.","userName":"Dnyaneshwar Shinde"}
+2026/03/23 19:25:06 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 79 ms
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:06 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:06 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 94 ms
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:06 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:06 processAggregationResultsFromCursor -> Decoded 10 results from aggregation
+2026/03/23 19:25:06 First aggregation result: {"_id":"69c133165badaa078a80693f","createdAt":"2026-03-23T12:33:26.364Z","email":"vrsalekya@gmail.com","name":"Alekhya Vedantam","source":"AI Chat Apps (ChatGPT, Perplexity, etc.)"}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 98 ms
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:06 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 processAggregationResultsFromCursor -> Decoded 235 results from aggregation
+2026/03/23 19:25:06 First aggregation result: {"_id":"2025-05-24","count":2}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 107 ms
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:06 processAggregationResultsFromCursor -> Decoded 12 results from aggregation
+2026/03/23 19:25:06 First aggregation result: {"_id":null,"count":356}
+2026/03/23 19:25:06 MongoDBTransaction -> ExecuteQuery -> MongoDB query executed in 75 ms
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> Committing MongoDB transaction
+2026/03/23 19:25:06 MongoDBTransaction -> Commit -> MongoDB transaction committed successfully
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Commit completed:
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Query type: SELECT
+2026/03/23 19:25:06 Manager -> ExecuteQuery -> Checking if schema trigger is needed
+2026/03/23 19:25:06 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 Successfully sent event to stream: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+[GIN] 2026/03/23 - 19:25:06 | 200 |   314.25175ms |             ::1 | POST     "/api/chats/680cb77f0386e114117ce51e/dashboards/69a855fab6cdda26e0533099/refresh?stream_id=mn38zka2-peq4lo"
+2026/03/23 19:25:06 Sending stream event -> key: 67c5ef8e6f4e62e4d0bca3ce:680cb77f0386e114117ce51e:mn38zka2-peq4lo, event: dashboard-widget-data
+2026/03/23 19:25:06 [CACHE UPDATE] Updating chat cache - ChatID: 680cb77f0386e114117ce51e
+2026/03/23 19:25:06 [REDIS WRITE] Storing compressed data - Key: chat:id:680cb77f0386e114117ce51e, Original: 161010 bytes, Compressed: 44348 bytes, Saved: 72.46%, TTL: 30m0s
+2026/03/23 19:25:06 [CACHE WRITE SUCCESS] Cached chat - Key: chat:id:680cb77f0386e114117ce51e

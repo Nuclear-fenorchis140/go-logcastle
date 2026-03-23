@@ -18,6 +18,7 @@ package logcastle
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"sync"
 	"time"
@@ -230,12 +231,17 @@ func (c *Castle) start() error {
 	// Wait for goroutines to start
 	startWg.Wait()
 
-	// Small delay to ensure scanner is ready
-	time.Sleep(5 * time.Millisecond)
-
-	// Replace os.Stdout and os.Stderr
+	// Replace os.Stdout and os.Stderr BEFORE signaling ready
 	os.Stdout = c.stdoutWriter
 	os.Stderr = c.stderrWriter
+
+	// CRITICAL: Reconfigure stdlib log package to use new stderr
+	// The log package stores os.Stderr at import time, so we must update it
+	log.SetOutput(c.stderrWriter)
+	log.SetFlags(log.LstdFlags) // Keep default flags
+
+	// Small delay to ensure pipes are fully established
+	time.Sleep(10 * time.Millisecond)
 
 	// Signal that interception is ready
 	close(c.ready)
@@ -253,6 +259,8 @@ func (c *Castle) stop() error {
 	}
 	if c.originalStderr != nil {
 		os.Stderr = c.originalStderr
+		// Restore stdlib log package to use original stderr
+		log.SetOutput(c.originalStderr)
 	}
 
 	// Close the done channel
