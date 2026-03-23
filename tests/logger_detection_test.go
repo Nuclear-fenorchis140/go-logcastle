@@ -30,19 +30,19 @@ func TestLoggerDetection(t *testing.T) {
 	}
 
 	logcastle.WaitReady()
-	
+
 	// Stdlib log has timestamp prefix -> logger="log"
 	log.Println("From log.Println")
-	
+
 	// Direct stdout no timestamp -> logger="stdout"
 	fmt.Fprintf(os.Stdout, "From stdout\n")
-	
+
 	time.Sleep(150 * time.Millisecond)
 	logcastle.Close()
 
 	output := buf.String()
 
-	// Verify smart detection worked  
+	// Verify smart detection worked
 	if !strings.Contains(output, `"logger":"log"`) {
 		t.Errorf("Expected logger='log', got: %s", output)
 	}
@@ -57,7 +57,7 @@ func TestDefaultLogLevel(t *testing.T) {
 	// This test just documents the behavior
 	entry := &logcastle.LogEntry{}
 	entry.Level = logcastle.LevelInfo // Default
-	
+
 	if entry.Level.String() != "info" {
 		t.Errorf("Expected default level to be 'info', got: %s", entry.Level.String())
 	}
