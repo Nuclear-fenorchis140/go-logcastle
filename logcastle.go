@@ -92,6 +92,14 @@ type Config struct {
 	// CustomTimestampFormat is used when TimestampFormat is TimestampFormatCustom
 	// Uses Go time format layout (e.g., "2006-01-02 15:04:05")
 	CustomTimestampFormat string
+
+	// IncludeLoggerField controls whether to include the 'logger' field in output.
+	// When false, the logger field is omitted from formatted logs (default: false)
+	IncludeLoggerField bool
+
+	// IncludeParseError controls whether to include 'log_parse_error' field in output.
+	// When false, parse error messages are omitted from formatted logs (default: false)
+	IncludeParseError bool
 }
 
 // DefaultConfig returns a Config with sensible defaults for most applications.
@@ -179,7 +187,7 @@ type Castle struct {
 
 func newCastle(config Config) (*Castle, error) {
 	parser := NewParser()
-	formatter := NewFormatter(config.Format, config.TimestampFormat, config.CustomTimestampFormat)
+	formatter := NewFormatter(config.Format, config.TimestampFormat, config.CustomTimestampFormat, config.IncludeLoggerField, config.IncludeParseError)
 	writer := NewBufferedWriter(config.Output, config.BufferSize, config.FlushInterval)
 
 	return &Castle{

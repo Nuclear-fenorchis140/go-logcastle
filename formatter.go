@@ -17,10 +17,12 @@ type Formatter struct {
 	format                Format
 	timestampFormat       TimestampFormat
 	customTimestampFormat string
+	includeLoggerField    bool // Whether to include logger field in output
+	includeParseError     bool // Whether to include parse error field in output
 }
 
 // NewFormatter creates a new formatter
-func NewFormatter(format Format, tsFormat TimestampFormat, customTsFormat string) *Formatter {
+func NewFormatter(format Format, tsFormat TimestampFormat, customTsFormat string, includeLogger bool, includeParseError bool) *Formatter {
 	if format == "" {
 		format = JSON
 	}
@@ -31,6 +33,8 @@ func NewFormatter(format Format, tsFormat TimestampFormat, customTsFormat string
 		format:                format,
 		timestampFormat:       tsFormat,
 		customTimestampFormat: customTsFormat,
+		includeLoggerField:    includeLogger,
+		includeParseError:     includeParseError,
 	}
 }
 
@@ -56,7 +60,8 @@ func (f *Formatter) formatJSON(entry *LogEntry) []byte {
 	output["level"] = entry.Level.String()
 	output["message"] = entry.Message
 
-	if entry.Logger != "" {
+	// Optionally include logger field
+	if f.includeLoggerField && entry.Logger != "" {
 		output["logger"] = entry.Logger
 	}
 
@@ -76,8 +81,8 @@ func (f *Formatter) formatJSON(entry *LogEntry) []byte {
 		output["span_id"] = entry.SpanID
 	}
 
-	// Add parse error if present
-	if entry.ParseError != "" {
+	// Optionally include parse error
+	if f.includeParseError && entry.ParseError != "" {
 		output["log_parse_error"] = entry.ParseError
 	}
 
@@ -98,7 +103,8 @@ func (f *Formatter) formatText(entry *LogEntry) []byte {
 	buf.WriteString(entry.Level.String())
 	buf.WriteByte(' ')
 
-	if entry.Logger != "" {
+	// Optionally include logger field
+	if f.includeLoggerField && entry.Logger != "" {
 		buf.WriteByte('[')
 		buf.WriteString(entry.Logger)
 		buf.WriteString("] ")
@@ -106,8 +112,8 @@ func (f *Formatter) formatText(entry *LogEntry) []byte {
 
 	buf.WriteString(entry.Message)
 
-	// Add parse error if present
-	if entry.ParseError != "" {
+	// Optionally include parse error
+	if f.includeParseError && entry.ParseError != "" {
 		buf.WriteString(" [parse_error: ")
 		buf.WriteString(entry.ParseError)
 		buf.WriteByte(']')
@@ -130,11 +136,17 @@ func (f *Formatter) formatLogFmt(entry *LogEntry) []byte {
 	fmt.Fprintf(&buf, "time=%s ", entry.Timestamp.Format(time.RFC3339Nano))
 	fmt.Fprintf(&buf, "level=%s ", entry.Level.String())
 
-	if entry.Logger != "" {
+	// Optionally include logger field
+	if f.includeLoggerField && entry.Logger != "" {
 		fmt.Fprintf(&buf, "logger=%s ", entry.Logger)
 	}
 
 	fmt.Fprintf(&buf, "msg=%q", entry.Message)
+
+	// Optionally include parse error
+	if f.includeParseError && entry.ParseError != "" {
+		fmt.Fprintf(&buf, " parse_error=%q", entry.ParseError)
+	}
 
 	// Add fields
 	if len(entry.Fields) > 0 {
