@@ -10,6 +10,7 @@ import (
 )
 
 func TestBasicInterception(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	var buf bytes.Buffer
 
 	err := logcastle.Init(logcastle.Config{
@@ -42,6 +43,7 @@ func TestBasicInterception(t *testing.T) {
 }
 
 func TestEnrichment(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	var buf bytes.Buffer
 
 	err := logcastle.Init(logcastle.Config{
@@ -79,6 +81,7 @@ func TestEnrichment(t *testing.T) {
 }
 
 func TestGracefulShutdown(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	var buf bytes.Buffer
 
 	err := logcastle.Init(logcastle.Config{
@@ -106,6 +109,7 @@ func TestGracefulShutdown(t *testing.T) {
 }
 
 func TestLevelFiltering(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	var buf bytes.Buffer
 
 	err := logcastle.Init(logcastle.Config{
@@ -131,6 +135,7 @@ func TestLevelFiltering(t *testing.T) {
 }
 
 func TestConfigDefaults(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	config := logcastle.DefaultConfig()
 
 	if config.Format != logcastle.JSON {

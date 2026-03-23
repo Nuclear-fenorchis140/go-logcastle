@@ -12,6 +12,7 @@ import (
 
 // TestCleanOutputByDefault tests that logs are clean by default
 func TestCleanOutputByDefault(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	var buf bytes.Buffer
 	config := logcastle.DefaultConfig()
 	config.Output = &buf

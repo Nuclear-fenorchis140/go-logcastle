@@ -155,12 +155,24 @@ func WaitReady() {
 }
 
 // Close gracefully shuts down the log castle and flushes buffered logs.
-// Always call this before application exit (use defer).
+// Always call this before application exit  (use defer).
 func Close() error {
 	if defaultCastle != nil {
 		return defaultCastle.stop()
 	}
 	return nil
+}
+
+// Reset forcefully resets the logcastle for testing purposes.
+// WARNING: Only use this in tests! Not safe for production use.
+func Reset() {
+	if defaultCastle != nil {
+		defaultCastle.stop()
+	}
+
+	// Reset the sync.Once to allow re-initialization
+	once = sync.Once{}
+	defaultCastle = nil
 }
 
 // Castle is the main log orchestrator

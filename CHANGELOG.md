@@ -6,19 +6,10 @@ All notable changes to go-logcastle will be documented in this file.
 
 ### Added
 - **Configurable metadata fields** - `IncludeLoggerField` and `IncludeParseError` config options (both default: false)
-- **Smart logger detection** - Distinguishes stdlib `log` vs direct `stdout` writes
+- **Smart logger detection** - Distinguishes stdlib `log` vs direct `stdout` writes based on timestamp patterns
 - **Clean output by default** - No metadata clutter unless explicitly enabled
-
-### Changed
-- Removed 150+ lines of hardcoded library pattern matching (MongoDB, Redis, GIN, etc.)
-- Simplified logger detection using timestamp pattern recognition
-- Default output now excludes `logger` and `log_parse_error` fields
-
-### Improved
-- More maintainable parser code
-- Faster generic log parsing
-
-## [1.0.1] - 2026-03-23
+- **Reset() function** - Enables proper test isolation (test-only, not for production use)
+- **Comprehensive test suite** - Tests for logger detection, clean output, stdlib log capture, and fallback parsing
 
 ### Fixed
 - **CRITICAL BUG**: stdlib `log.Println()` and `log.Printf()` calls were not being captured
@@ -26,7 +17,20 @@ All notable changes to go-logcastle will be documented in this file.
 - Root cause: stdlib log package caches `os.Stderr` at import time and must be explicitly updated
 
 ### Changed
+- Simplified logger detection using timestamp pattern recognition (stdlib log format: `YYYY/MM/DD HH:MM:SS`)
+- Default output now excludes `logger` and `log_parse_error` fields
 - Increased interception delay from 5ms to 10ms for more reliable initialization
+- Updated all tests to use Reset() for proper isolation between test runs
+- Increased interception delay from 5ms to 10ms for more reliable initialization
+
+### Improved
+- More maintainable parser code
+- Faster generic log parsing without pattern matching overhead
+
+## [1.0.1] - 2026-03-23
+
+### Fixed
+- Module path corrected to `github.com/bhaskarblur/go-logcastle`
 
 ## [1.0.0] - 2026-03-23
 

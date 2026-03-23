@@ -10,11 +10,13 @@ import (
 )
 
 func TestFallbackParsing(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	var buf bytes.Buffer
 
 	err := logcastle.Init(logcastle.Config{
-		Format: logcastle.JSON,
-		Output: &buf,
+		Format:            logcastle.JSON,
+		Output:            &buf,
+		IncludeParseError: true, // Testing parse errors
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -45,11 +47,13 @@ func TestFallbackParsing(t *testing.T) {
 }
 
 func TestMalformedJSON(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	var buf bytes.Buffer
 
 	err := logcastle.Init(logcastle.Config{
-		Format: logcastle.JSON,
-		Output: &buf,
+		Format:            logcastle.JSON,
+		Output:            &buf,
+		IncludeParseError: true, // Testing malformed JSON
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -80,6 +84,7 @@ func TestMalformedJSON(t *testing.T) {
 }
 
 func TestTimestampFormats(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	formats := []struct {
 		format   logcastle.TimestampFormat
 		name     string
@@ -93,6 +98,7 @@ func TestTimestampFormats(t *testing.T) {
 
 	for _, tc := range formats {
 		t.Run(tc.name, func(t *testing.T) {
+			logcastle.Reset() // Reset for each subtest
 			var buf bytes.Buffer
 
 			err := logcastle.Init(logcastle.Config{
@@ -124,6 +130,7 @@ func TestTimestampFormats(t *testing.T) {
 }
 
 func TestCustomTimestampFormat(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	var buf bytes.Buffer
 
 	customFormat := "2006-01-02 15:04:05"

@@ -11,6 +11,7 @@ import (
 
 // TestStdlibLogCapture verifies that stdlib log.Println() is properly captured
 func TestStdlibLogCapture(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	var buf bytes.Buffer
 
 	config := logcastle.Config{

@@ -14,6 +14,7 @@ import (
 
 // TestLoggerDetection tests smart detection: log vs stdout
 func TestLoggerDetection(t *testing.T) {
+	logcastle.Reset() // Reset for test isolation
 	var buf bytes.Buffer
 	config := logcastle.Config{
 		Format:             logcastle.JSON,
